@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -64,8 +65,10 @@ public class QuizService {
                 user.setResultList(list);
 //                System.out.println(user.getResultList());
             }
+
             result.setUser(user);
             User curr=userDAO.save(user);
+            evaluateRank();
             return result;
         } catch (Exception e){
             e.printStackTrace();
@@ -73,7 +76,23 @@ public class QuizService {
         }
     }
 
+    private void evaluateRank() {
+        List<User> userList=userDAO.findAll();
+        Collections.sort(userList);
+        int rank=1;
+        for (User user:userList){
+            user.setUserRank(rank);
+            rank++;
+            userDAO.save(user);
+        }
+
+    }
+
     public User getUser(Integer id) {
         return userDAO.findById(id).get();
+    }
+
+    public List<User> getAllUser() {
+        return userDAO.findAll();
     }
 }

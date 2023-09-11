@@ -6,6 +6,9 @@ import com.example.quizapp.QuizApp.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.List;
+
 @RestController
 @RequestMapping("/quiz")
 public class User {
@@ -23,5 +26,10 @@ public class User {
     public com.example.quizapp.QuizApp.model.User getUser(@PathVariable Integer id){
         return quizService.getUser(id);
     }
-
+    @GetMapping("/user")
+    public List<com.example.quizapp.QuizApp.model.User> getALlUser(){
+        List<com.example.quizapp.QuizApp.model.User> userList =quizService.getAllUser();
+        Collections.sort(userList);
+        return userList;
+    }
 }

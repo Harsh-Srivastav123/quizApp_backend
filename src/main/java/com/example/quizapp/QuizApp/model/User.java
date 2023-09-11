@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class User {
+public class User implements Comparable<User> {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,4 +23,9 @@ public class User {
     Integer totalQuiz;
     @OneToMany(cascade =CascadeType.ALL,mappedBy = "user")
     List<Result> resultList;
+
+    @Override
+    public int compareTo(User o) {
+        return o.totalMarks-this.totalMarks;
+    }
 }
