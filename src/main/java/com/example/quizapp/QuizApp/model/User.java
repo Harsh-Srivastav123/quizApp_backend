@@ -18,7 +18,7 @@ public class User implements Comparable<User> {
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
-    Integer totalMarks;
+    int totalMarks;
     Integer userRank;
     Integer totalQuiz;
     @OneToMany(cascade =CascadeType.ALL,mappedBy = "user")
