@@ -12,8 +12,8 @@ import java.util.List;
 
 @Component
 public class QuizService {
-    @Autowired
-    Result result;
+
+    Result result=new Result();
 
     @Autowired
     QuestionDAO questionDAO;
@@ -68,7 +68,9 @@ public class QuizService {
 
             result.setUser(user);
             User curr=userDAO.save(user);
-            evaluateRank();
+            if(curr!=null){
+                evaluateRank();
+            }
             return result;
         } catch (Exception e){
             e.printStackTrace();
