@@ -46,6 +46,7 @@ QuizzApp offers a wide range of features to meet your quiz and question manageme
 Easily manage your questions:
 - View a comprehensive list of questions.
 - Create new questions with detailed descriptions.
+- Add list of questions.
 - Update existing questions to keep your content up-to-date.
 - Delete questions that are no longer relevant.
 
