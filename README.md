@@ -93,7 +93,7 @@ Before you begin, make sure you have the following installed:
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/yourusername/quizzapp.git
+   git clone https://github.com/yourusername/quizApp_backend.git
 2. Configure application.properties:
    ```shell
      # configure according to your requirement 
