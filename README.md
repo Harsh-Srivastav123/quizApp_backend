@@ -1,7 +1,7 @@
 
-# QuizzApp - Spring Boot Project
+# QuizApp - Spring Boot Project
 
-QuizzApp is a web application built with Spring Boot that allows users to access a list of questions, perform CRUD (Create, Read, Update, Delete) operations on questions, filter questions by topics, create user profiles, take quizzes, and store quiz responses in a MySQL database. It also integrates with Cloudinary for user profile image management.
+QuizApp is a web application built with Spring Boot that allows users to access a list of questions, perform CRUD (Create, Read, Update, Delete) operations on questions, filter questions by topics, create user profiles, take quizzes, and store quiz responses in a MySQL database. It also integrates with Cloudinary for user profile image management.
 
 ## Table of Contents
 
