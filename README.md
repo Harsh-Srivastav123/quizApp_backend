@@ -18,7 +18,7 @@ QuizzApp is a web application built with Spring Boot that allows users to access
 
 ## Project Overview
 
-QuizzApp is designed to provide the following key features:
+QuizApp is designed to provide the following key features:
 
 - **Question Management:**
   - View a list of questions.
@@ -39,7 +39,7 @@ QuizzApp is designed to provide the following key features:
 
 ## Features
 
-QuizzApp offers a wide range of features to meet your quiz and question management needs:
+QuizApp offers a wide range of features to meet your quiz and question management needs:
 
 ### 1. Question Management
 
@@ -120,13 +120,13 @@ Before you begin, make sure you have the following installed:
 
 
 ### Usage
-Provide instructions on how to use and interact with your QuizzApp. Include examples of common tasks or use cases.
+Provide instructions on how to use and interact with your QuizApp. Include examples of common tasks or use cases.
 
 ### Configuration
 Explain how to configure your application, including setting up the database and Cloudinary credentials.
 
 ### Swagger API Documentation
-QuizzApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
+QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
  ```shell
    http://localhost:8080/swagger-ui.html
 
