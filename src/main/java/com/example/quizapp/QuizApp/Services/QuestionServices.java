@@ -10,14 +10,13 @@ import java.util.List;
 public class QuestionServices {
     @Autowired
     QuestionDAO questionDAO;
-    public boolean addQuestion(Question question) {
+    public Question addQuestion(Question question) {
         try{
-            questionDAO.save(question);
-           return true;
+            return questionDAO.save(question);
         }
         catch (Exception e){
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
     public boolean addQuestionList(List<Question> questionList){

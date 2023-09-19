@@ -3,6 +3,7 @@ package com.example.quizapp.QuizApp.Services;
 import com.example.quizapp.QuizApp.dao.QuestionDAO;
 import com.example.quizapp.QuizApp.dao.UserDAO;
 import com.example.quizapp.QuizApp.model.*;
+import com.example.quizapp.QuizApp.utils.CalculateDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +20,8 @@ public class QuizService {
     QuestionDAO questionDAO;
     @Autowired
     UserDAO userDAO;
+    @Autowired
+    CalculateDateTime calculateDateTime;
 
     User user;
     public Result evaluateQuiz(QuizResponse quizResponse) {
@@ -31,14 +34,16 @@ public class QuizService {
         try{
 
             for (Response response:responseList){
-                int id=response.getId();
-                String rightAnswer=questionDAO.getReferenceById(id).getRightAnswer();
-                if(rightAnswer.equals(response.getRightAnswer())){
-                    rightAnswerUser++;
-                }
-                else {
-                    wrongAnswer++;
-                }
+              if(questionDAO.existsById(response.getId())){
+                  int id=response.getId();
+                  String rightAnswer=questionDAO.getReferenceById(id).getRightAnswer();
+                  if(rightAnswer.equals(response.getRightAnswer())){
+                      rightAnswerUser++;
+                  }
+                  else {
+                      wrongAnswer++;
+                  }
+              }
             }
             result.setCategory(quizResponse.getCategory());
             result.setTotalQuestion(totalQuestion);
@@ -46,6 +51,7 @@ public class QuizService {
             result.setRightAnswer(rightAnswerUser);
             result.setTotalAttemptQuestion(responseList.size());
             result.setWrongAnswer(wrongAnswer);
+            result.setTimeStamp(calculateDateTime.calculateDateTime());
             if(quizResponse.getUserId()==null){
                 user=new User();
                 user.setTotalMarks(rightAnswerUser);
@@ -56,13 +62,22 @@ public class QuizService {
                 user.setResultList(list);
             }
             else {
-                user=userDAO.getReferenceById(quizResponse.getUserId());
-                user.setTotalMarks(user.getTotalMarks()+rightAnswerUser);
-                user.setTotalQuiz(1+user.getTotalQuiz());
-                user.setUserRank(user.getUserRank());
-                List<Result> list=user.getResultList();
-                list.add(result);
-                user.setResultList(list);
+
+                if(userDAO.existsById(quizResponse.getUserId())){
+                    user=userDAO.getReferenceById(quizResponse.getUserId());
+                    user.setTotalMarks(user.getTotalMarks()+rightAnswerUser);
+                    if(user.getTotalQuiz()!=null){
+                        user.setTotalQuiz(1+user.getTotalQuiz());
+                    }
+                    else {
+                        user.setTotalQuiz(1);
+                    }
+
+                    List<Result> list=user.getResultList();
+                    list.add(result);
+                    user.setResultList(list);
+                }
+
 //                System.out.println(user.getResultList());
             }
 
@@ -91,10 +106,17 @@ public class QuizService {
     }
 
     public User getUser(Integer id) {
-        return userDAO.findById(id).get();
+        if(userDAO.existsById(id)){
+            return userDAO.findById(id).get();
+        }
+        return null;
     }
 
     public List<User> getAllUser() {
         return userDAO.findAll();
+    }
+
+    public User createUser(User user) {
+        return userDAO.save(user);
     }
 }

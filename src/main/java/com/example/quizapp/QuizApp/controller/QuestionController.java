@@ -14,7 +14,7 @@ public class QuestionController {
     @Autowired
     QuestionServices questionServices;
     @PostMapping("/add")
-    public boolean addQuestion( @RequestBody Question question){
+    public Question addQuestion( @RequestBody Question question){
         return questionServices.addQuestion(question);
     }
 
@@ -31,7 +31,7 @@ public class QuestionController {
 
         return ql;
     }
-    @GetMapping("/question/{category}")
+    @GetMapping("/category/{category}")
     public QuestionList guestionByCategory(@PathVariable String category){
         QuestionList ql=new QuestionList();
         ql.setQuestionList(questionServices.questionByCategory(category));
@@ -49,15 +49,15 @@ public class QuestionController {
         return questionServices.delete(id);
     }
     @PostMapping("/update")
-    public boolean update(@RequestBody Question question){
+    public Question update(@RequestBody Question question){
         if(question!=null){
             if(question.getId()!=0){
                 return questionServices.addQuestion(question);
             }else {
-                return false;
+                return null;
             }
 
         }
-        return false;
+       return null;
     }
 }

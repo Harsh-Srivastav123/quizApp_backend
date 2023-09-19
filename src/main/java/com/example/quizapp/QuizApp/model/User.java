@@ -17,7 +17,10 @@ public class User implements Comparable<User> {
     @Id
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     Integer id;
+    String userName;
+    String profileUrl;
     int totalMarks;
     Integer userRank;
     Integer totalQuiz;

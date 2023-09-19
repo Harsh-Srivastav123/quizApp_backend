@@ -1,12 +1,15 @@
 package com.example.quizapp.QuizApp.model;
 
+import com.example.quizapp.QuizApp.utils.CalculateDateTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
+
 
 @Entity
 @Component
@@ -24,10 +27,14 @@ public class Result {
     Integer rightAnswer;
     Integer wrongAnswer;
     String category;
+    String timeStamp ;
 
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "id")
     User user;
 
+
+
 }
+
