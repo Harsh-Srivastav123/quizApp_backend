@@ -30,15 +30,17 @@ public class QuizService {
         int totalQuestion=quizResponse.getTotalQuestion();
         int nonAttemptQuestion=totalQuestion-responseList.size();
         int rightAnswerUser=0;
+        int totalMarks=0;
         int wrongAnswer=0;
         try{
 
             for (Response response:responseList){
               if(questionDAO.existsById(response.getId())){
                   int id=response.getId();
-                  String rightAnswer=questionDAO.getReferenceById(id).getRightAnswer();
-                  if(rightAnswer.equals(response.getRightAnswer())){
+                  Question questionResponse=questionDAO.getReferenceById(id);
+                  if(questionResponse.getRightAnswer().equals(response.getRightAnswer())){
                       rightAnswerUser++;
+                      totalMarks+=Integer.parseInt(questionResponse.getMarks());
                   }
                   else {
                       wrongAnswer++;
@@ -49,37 +51,42 @@ public class QuizService {
             result.setTotalQuestion(totalQuestion);
             result.setNonAttemptQuestion(nonAttemptQuestion);
             result.setRightAnswer(rightAnswerUser);
+            result.setTotalMarks(totalMarks);
             result.setTotalAttemptQuestion(responseList.size());
             result.setWrongAnswer(wrongAnswer);
             result.setTimeStamp(calculateDateTime.calculateDateTime());
-            if(quizResponse.getUserId()==null){
-                user=new User();
-                user.setTotalMarks(rightAnswerUser);
-                user.setTotalQuiz(1);
-                user.setUserRank(1);
-                List<Result> list=new ArrayList<>();
+//            if(quizResponse.getUserId()==null){
+//                user=new User();
+//                user.setTotalMarks(rightAnswerUser);
+//                user.setTotalQuiz(1);
+//                user.setUserRank(1);
+//                List<Result> list=new ArrayList<>();
+//                list.add(result);
+//                user.setResultList(list);
+//            }
+//            else {
+//
+////                System.out.println(user.getResultList());
+//            }
+
+            // for giving quiz user must have to create account.
+
+
+            if(userDAO.existsById(quizResponse.getUserId())){
+                user=userDAO.getReferenceById(quizResponse.getUserId());
+                user.setTotalMarks(user.getTotalMarks()+totalMarks);
+                if(user.getTotalQuiz()!=null){
+                    user.setTotalQuiz(1+user.getTotalQuiz());
+                }
+                else {
+                    user.setTotalQuiz(1);
+                }
+
+                List<Result> list=user.getResultList();
                 list.add(result);
                 user.setResultList(list);
             }
-            else {
 
-                if(userDAO.existsById(quizResponse.getUserId())){
-                    user=userDAO.getReferenceById(quizResponse.getUserId());
-                    user.setTotalMarks(user.getTotalMarks()+rightAnswerUser);
-                    if(user.getTotalQuiz()!=null){
-                        user.setTotalQuiz(1+user.getTotalQuiz());
-                    }
-                    else {
-                        user.setTotalQuiz(1);
-                    }
-
-                    List<Result> list=user.getResultList();
-                    list.add(result);
-                    user.setResultList(list);
-                }
-
-//                System.out.println(user.getResultList());
-            }
 
             result.setUser(user);
             User curr=userDAO.save(user);
@@ -118,5 +125,8 @@ public class QuizService {
 
     public User createUser(User user) {
         return userDAO.save(user);
+    }
+    public User getUserByUserName(String userName){
+        return userDAO.findByUserName(userName);
     }
 }

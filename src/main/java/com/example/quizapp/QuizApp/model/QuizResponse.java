@@ -17,4 +17,5 @@ public class QuizResponse {
     String category;
     Integer userId;
 
+
 }
