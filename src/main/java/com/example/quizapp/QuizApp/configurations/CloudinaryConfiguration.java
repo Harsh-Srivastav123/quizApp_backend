@@ -1,4 +1,4 @@
-package com.example.quizapp.QuizApp.config;
+package com.example.quizapp.QuizApp.configurations;
 
 import com.cloudinary.Cloudinary;
 import org.springframework.context.annotation.Bean;
