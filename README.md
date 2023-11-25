@@ -96,8 +96,7 @@ Before you begin, make sure you have the following installed:
 - MySQL Database
 - Apache Maven
 - Cloudinary API Key and Secret (for profile image management)
-
-###You can also access from deployment server.
+- You can also access from deployment server.
      ```shell
      https://quizappbackend-production-6897.up.railway.app/
 
