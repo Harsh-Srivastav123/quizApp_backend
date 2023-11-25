@@ -1,7 +1,7 @@
 
 # QuizApp - Spring Boot Project
 
-QuizApp is a web application built with Spring Boot that allows users to access a list of questions, perform CRUD (Create, Read, Update, Delete) operations on questions, filter questions by topics, create user profiles, take quizzes, and store quiz responses in a MySQL database. It also integrates with Cloudinary for user profile image management.
+QuizApp, powered by Spring Boot, is a dynamic backend application revolutionizing the quiz experience. Users enjoy seamless CRUD operations on questions, with easy topic filtering. Personalized profiles with Cloudinary-managed images enhance user engagement. Robust security features, including Spring Security and JWT authentication, safeguard user data. Unique to QuizApp is the ability to generate custom question papers and the question are randomly picked from all difficulty level to provide balance paper, adding a personalized touch to quiz sessions. User can make their profile to take quiz and keep track record of their progress . MySQL integration stores responses for progress tracking. Hosted on Railway, QuizApp ensures scalability and reliability, making it a go-to platform for interactive and secure quizzing.
 
 ## Table of Contents
 
@@ -28,6 +28,7 @@ QuizApp is designed to provide the following key features:
 
 - **Topic Filtering:**
   - Filter questions by topics.
+  - Filter questions by difficulty.
 
 - **User Profiles:**
   - Create and manage user profiles.
@@ -36,6 +37,7 @@ QuizApp is designed to provide the following key features:
 - **Quiz Taking:**
   - Allow users to take quizzes.
   - Store quiz responses in a MySQL database.
+  - Quiz Api are secured and only authenticated user can use this.
 
 ## Features
 
@@ -49,30 +51,36 @@ Easily manage your questions:
 - Add list of questions.
 - Update existing questions to keep your content up-to-date.
 - Delete questions that are no longer relevant.
+- Generate  Balanced Question paper.
 
 ### 2. Topic Filtering
 
 Efficiently find questions by topic:
 - Use the topic filter to narrow down questions by category.
 - Quickly access questions related to specific subjects.
+- Filter question according to their diificulty.
 
 ### 3. User Profiles
 
 Enhance user engagement with profiles:
 - Create user profiles to personalize the quiz experience.
 - Upload profile images using Cloudinary for a unique touch.
+- Only authenticated can allow to use this.
 
 ### 4. Quiz Taking
 
 Enable users to test their knowledge:
 - Let users take quizzes based on available questions.
 - Store quiz responses in a MySQL database for analysis and review.
+- Keep track record of their progress & also get rank among all user.
 
 ## Technologies Used
 
 - Java
 - Spring Boot (MVC)
 - Spring Data JPA (Hibernate)
+- Spring Security
+- JWT authentication
 - MySQL Database
 - Cloudinary (For user profile image management)
 
@@ -88,6 +96,9 @@ Before you begin, make sure you have the following installed:
 - MySQL Database
 - Apache Maven
 - Cloudinary API Key and Secret (for profile image management)
+- You can also access from deployment server.
+
+     https://quizappbackend-production-6897.up.railway.app/
 
 ### Installation
 
@@ -127,6 +138,7 @@ Explain how to configure your application, including setting up the database and
 
 ### Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
+https://quizappbackend-production-6897.up.railway.app/swagger-ui/index.html
  ```shell
-   http://localhost:8080/swagger-ui.html
-
+   http://localhost:8080/swagger-ui.html 
+  
