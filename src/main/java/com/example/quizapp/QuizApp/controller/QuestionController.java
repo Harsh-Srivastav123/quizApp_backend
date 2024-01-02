@@ -69,4 +69,13 @@ public class QuestionController {
         }
        return null;
     }
+    @GetMapping("/difficulty/{difficulty}")
+    public QuestionList getQuestionWithDifficulty(@PathVariable  String difficulty){
+        List<Question> questionList=questionServices.getQuestionByDifficulty(difficulty);
+        QuestionList ql=new QuestionList();
+        ql.setCategory(difficulty);
+        ql.setQuestionList(questionList);
+        ql.setTotalQuestion(questionList.size());
+        return ql;
+    }
 }

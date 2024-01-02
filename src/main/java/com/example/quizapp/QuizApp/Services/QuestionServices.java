@@ -86,4 +86,8 @@ public class QuestionServices {
         questionsList.remove(i);
         return i;
     }
+
+    public List<Question> getQuestionByDifficulty(String difficulty) {
+        return questionDAO.findByDifficulty(difficulty);
+    }
 }

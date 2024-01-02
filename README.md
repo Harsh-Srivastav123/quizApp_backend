@@ -98,7 +98,8 @@ Before you begin, make sure you have the following installed:
 - Cloudinary API Key and Secret (for profile image management)
 - You can also access from deployment server.
 
-     https://quizappbackend-production-6897.up.railway.app/
+       http://quizapp-springboot-env.eba-jbkqpxmq.eu-north-1.elasticbeanstalk.com/
+
 
 ### Installation
 
@@ -138,7 +139,8 @@ Explain how to configure your application, including setting up the database and
 
 ### Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
-https://quizappbackend-production-6897.up.railway.app/swagger-ui/index.html
+
+http://quizapp-springboot-env.eba-jbkqpxmq.eu-north-1.elasticbeanstalk.com/swagger-ui/index.html
+
  ```shell
-   http://localhost:8080/swagger-ui.html 
-  
+   http://localhost:8080/swagger-ui.html

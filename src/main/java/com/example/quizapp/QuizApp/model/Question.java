@@ -17,13 +17,14 @@ import org.springframework.stereotype.Component;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private Integer id;
     String question;
     String options1;
     String options2;
     String options3;
     String options4;
-    @JsonProperty(  access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(  access = JsonProperty.Access.WRITE_ONLY)
     String rightAnswer;
     String category;
     String topic;
