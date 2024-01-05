@@ -1,7 +1,7 @@
 
 # QuizApp - Spring Boot Project
 
-QuizApp, powered by Spring Boot, is a dynamic backend application revolutionizing the quiz experience. Users enjoy seamless CRUD operations on questions, with easy topic filtering. Personalized profiles with Cloudinary-managed images enhance user engagement. Robust security features, including Spring Security and JWT authentication, safeguard user data. Unique to QuizApp is the ability to generate custom question papers and the question are randomly picked from all difficulty level to provide balance paper, adding a personalized touch to quiz sessions. User can make their profile to take quiz and keep track record of their progress . MySQL integration stores responses for progress tracking. Hosted on Railway, QuizApp ensures scalability and reliability, making it a go-to platform for interactive and secure quizzing.
+QuizApp, powered by Spring Boot, is a dynamic backend application revolutionizing the quiz experience. Users enjoy seamless CRUD operations on questions, with easy topic filtering. Personalized profiles with Cloudinary-managed images enhance user engagement. Robust security features, including Spring Security and JWT authentication, safeguard user data. Unique to QuizApp is the ability to generate custom question papers and the question are randomly picked from all difficulty level to provide balance paper, adding a personalized touch to quiz sessions. User can make their profile to take quiz and keep track record of their progress . MySQL integration stores responses for progress tracking. Deployed on AWS, QuizApp ensures scalability and reliability, making it a go-to platform for interactive and secure quizzing.
 
 ## Table of Contents
 
@@ -83,6 +83,7 @@ Enable users to test their knowledge:
 - JWT authentication
 - MySQL Database
 - Cloudinary (For user profile image management)
+- AWS for Deloyment 
 
 Add any other technologies or libraries you've used in your project.
 
@@ -96,9 +97,9 @@ Before you begin, make sure you have the following installed:
 - MySQL Database
 - Apache Maven
 - Cloudinary API Key and Secret (for profile image management)
-- You can also access from deployment server.
+- You can also access from deployment server. http://quizapp-springboot-env.eba-jbkqpxmq.eu-north-1.elasticbeanstalk.com/
 
-       http://quizapp-springboot-env.eba-jbkqpxmq.eu-north-1.elasticbeanstalk.com/
+       
 
 
 ### Installation
