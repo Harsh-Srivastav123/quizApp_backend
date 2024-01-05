@@ -112,7 +112,7 @@ Before you begin, make sure you have the following installed:
    ```shell
      # configure according to your requirement 
      server.port=8080
-     spring.datasource.url=jdbc:mysql://localhost:3306/spring_quiz
+     spring.datasource.url=url
      spring.datasource.username="username"
      spring.datasource.password="password"
      spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
