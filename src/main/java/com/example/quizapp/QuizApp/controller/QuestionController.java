@@ -4,7 +4,6 @@ import com.example.quizapp.QuizApp.Services.QuestionServices;
 import com.example.quizapp.QuizApp.model.Question;
 import com.example.quizapp.QuizApp.model.QuestionList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,14 +22,6 @@ public class QuestionController {
     public boolean addQuestionList(@RequestBody List<Question> questionList){
         return questionServices.addQuestionList(questionList);
     }
-//    @GetMapping("/delete/{id}")
-//    public Boolean deleteById(@PathVariable Integer id){
-//        return questionServices.delete(id);
-//    }
-    @GetMapping("/questionPaper")
-    public QuestionList generatePaper(){
-        return questionServices.generatePaper();
-    }
     @GetMapping("/show") 
     public QuestionList showQuestion(){
         QuestionList ql=new QuestionList();
@@ -41,7 +32,7 @@ public class QuestionController {
         return ql;
     }
     @GetMapping("/category/{category}")
-    public QuestionList questionByCategory(@PathVariable String category){
+    public QuestionList guestionByCategory(@PathVariable String category){
         QuestionList ql=new QuestionList();
         ql.setQuestionList(questionServices.questionByCategory(category));
         ql.setTotalQuestion(questionServices.questionByCategory(category).size());
@@ -68,14 +59,5 @@ public class QuestionController {
 
         }
        return null;
-    }
-    @GetMapping("/difficulty/{difficulty}")
-    public QuestionList getQuestionWithDifficulty(@PathVariable  String difficulty){
-        List<Question> questionList=questionServices.getQuestionByDifficulty(difficulty);
-        QuestionList ql=new QuestionList();
-        ql.setCategory(difficulty);
-        ql.setQuestionList(questionList);
-        ql.setTotalQuestion(questionList.size());
-        return ql;
     }
 }
