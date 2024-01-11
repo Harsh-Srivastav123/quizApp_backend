@@ -1,23 +1,29 @@
 package com.example.quizapp.QuizApp.Services;
 
+import ch.qos.logback.core.model.INamedModel;
 import com.example.quizapp.QuizApp.dao.QuestionDAO;
 import com.example.quizapp.QuizApp.dao.UserDAO;
+import com.example.quizapp.QuizApp.dao.VerificationDAO;
 import com.example.quizapp.QuizApp.model.*;
 import com.example.quizapp.QuizApp.utils.CalculateDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
 @Component
-public class QuizService {
+public class UserService {
 
-    Result result=new Result();
+
 
     @Autowired
     QuestionDAO questionDAO;
+
+    @Autowired
+    VerificationDAO verificationDAO;
     @Autowired
     UserDAO userDAO;
     @Autowired
@@ -25,6 +31,7 @@ public class QuizService {
 
     User user;
     public Result evaluateQuiz(QuizResponse quizResponse) {
+        Result result=new Result();
 
         List<Response> responseList=quizResponse.getResponseList();
         int totalQuestion=quizResponse.getTotalQuestion();
@@ -38,7 +45,10 @@ public class QuizService {
               if(questionDAO.existsById(response.getId())){
                   int id=response.getId();
                   Question questionResponse=questionDAO.getReferenceById(id);
+//                  System.out.println(response.getRightAnswer());
+//                  System.out.println(questionResponse.getRightAnswer());
                   if(questionResponse.getRightAnswer().equals(response.getRightAnswer())){
+                      System.out.println("rightAnswer");
                       rightAnswerUser++;
                       totalMarks+=Integer.parseInt(questionResponse.getMarks());
                   }
@@ -128,5 +138,31 @@ public class QuizService {
     }
     public User getUserByUserName(String userName){
         return userDAO.findByUserName(userName);
+    }
+
+    public void saveVerificationToken(User user, String token) {
+        verificationDAO.save(new VerificationToken(token,user));
+    }
+
+    public List<Integer> validateToken(String token) {
+        List<Integer> status=new ArrayList<>();
+        VerificationToken verificationToken=verificationDAO.findByToken(token);
+        if(verificationToken==null){
+            status.add(0);
+            return status;
+        }
+        status.add(verificationToken.getUser().getId());
+
+        User user=verificationToken.getUser();
+        Calendar calendar=Calendar.getInstance();
+        if((verificationToken.getExpirationTime().getTime()-calendar.getTime().getTime())<=0){
+            verificationDAO.delete(verificationToken);
+            status.add(1);
+            userDAO.delete(verificationToken.getUser());
+        }
+        user.setEnabled(true);
+        userDAO.save(user);
+        status.add(2);
+        return status;
     }
 }

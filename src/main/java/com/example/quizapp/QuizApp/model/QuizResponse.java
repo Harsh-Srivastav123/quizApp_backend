@@ -16,6 +16,4 @@ public class QuizResponse {
     int totalQuestion;
     String category;
     Integer userId;
-
-
 }
