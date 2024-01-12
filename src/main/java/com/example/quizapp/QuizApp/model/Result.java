@@ -27,7 +27,6 @@ public class Result {
     Integer rightAnswer;
     Integer wrongAnswer;
     String category;
-    Integer totalMarks;
     String timeStamp ;
 
     @ManyToOne
