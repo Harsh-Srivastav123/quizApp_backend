@@ -1,6 +1,9 @@
 package com.example.quizapp.QuizApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +27,11 @@ public class User  implements UserDetails , Comparable<User>  {
     Integer id;
     String userName;
     // only for verification
+
+    //    @Email(message = "Not a valid email id")
     String email;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     String password;
     String profileUrl;
     int totalMarks;
@@ -32,6 +39,8 @@ public class User  implements UserDetails , Comparable<User>  {
     Integer totalQuiz;
     @OneToMany(cascade =CascadeType.ALL,mappedBy = "user")
     List<Result> resultList;
+    @JsonIgnore
+    boolean isEnabled;
 
     @Override
     public int compareTo(User o) {
@@ -72,6 +81,6 @@ public class User  implements UserDetails , Comparable<User>  {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.isEnabled;
     }
 }

@@ -1,14 +1,13 @@
 package com.example.quizapp.QuizApp.controller;
 
 import com.example.quizapp.QuizApp.Services.CloudinaryService;
-import com.example.quizapp.QuizApp.Services.QuizService;
+import com.example.quizapp.QuizApp.Services.UserService;
 import com.example.quizapp.QuizApp.model.*;
 import com.example.quizapp.QuizApp.security.JwtHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,7 +26,7 @@ import java.util.*;
 @RequestMapping("/quiz")
 public class UserController {
     @Autowired
-    QuizService quizService;
+    UserService userService;
 
 
     @Autowired
@@ -48,15 +47,15 @@ public class UserController {
         if(quizResponse==null){
             return null;
         }
-        return quizService.evaluateQuiz(quizResponse);
+        return userService.evaluateQuiz(quizResponse);
     }
     @GetMapping("/user/{id}")
     public User getUser(@PathVariable Integer id){
-        return quizService.getUser(id);
+        return userService.getUser(id);
     }
     @GetMapping("/user")
     public List<User> getALlUser(){
-        List<com.example.quizapp.QuizApp.model.User> userList =quizService.getAllUser();
+        List<com.example.quizapp.QuizApp.model.User> userList = userService.getAllUser();
         Collections.sort(userList);
         return userList;
     }
@@ -89,10 +88,10 @@ public class UserController {
 //        else {
 //            user1.setProfileUrl(data.get("url").toString());
 //        }
-        if(quizService.getUserByUserName(user1.getUsername())==null){
+        if(userService.getUserByUserName(user1.getUsername())==null){
             user1.setPassword(passwordEncoder.encode(user1.getPassword()));
             user1.setProfileUrl(data.get("url").toString());
-            return new ResponseEntity<>(quizService.createUser(user1),HttpStatus.OK);
+            return new ResponseEntity<>(userService.createUser(user1),HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
@@ -105,7 +104,7 @@ public class UserController {
         System.out.println(token);
         JwtResponse response = JwtResponse.builder().token(token)
                 .userName(userDetails.getUsername()).build();
-        response.setUserId(quizService.getUserByUserName(requests.getUserName()).getId());
+        response.setUserId(userService.getUserByUserName(requests.getUserName()).getId());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

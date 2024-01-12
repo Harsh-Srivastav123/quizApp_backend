@@ -43,8 +43,8 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> 
-                                       auth.requestMatchers("/question/**","/quiz/createUser","/quiz/auth","quiz/test","/swagger-ui/**","/v3/api-docs/**","/bus/v3/api-docs/**","/")
+                .authorizeHttpRequests(auth ->
+                        auth.requestMatchers("/question/**","user/verifyRegistration","/user/createUser","/user/auth","user/test","/swagger-ui.html","/")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())
@@ -63,7 +63,7 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-//    @Bean
+    //    @Bean
 //    public UserDetailsService users() {
 //        UserDetails user = User.builder()
 //                .username("user")
