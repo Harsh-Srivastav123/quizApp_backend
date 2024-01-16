@@ -97,7 +97,7 @@ Before you begin, make sure you have the following installed:
 - MySQL Database
 - Apache Maven
 - Cloudinary API Key and Secret (for profile image management)
-- You can also access from deployment server. http://quizapp-springboot-env.eba-jbkqpxmq.eu-north-1.elasticbeanstalk.com/
+- You can also access from deployment server. http://quiz-app-prod-env.eba-weahtpnc.ap-south-1.elasticbeanstalk.com/
 
        
 
@@ -141,7 +141,7 @@ Explain how to configure your application, including setting up the database and
 ### Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
 
-http://quizapp-springboot-env.eba-jbkqpxmq.eu-north-1.elasticbeanstalk.com/swagger-ui/index.html
+http://quiz-app-prod-env.eba-weahtpnc.ap-south-1.elasticbeanstalk.com/swagger-ui/index.html
 
  ```shell
    http://localhost:8080/swagger-ui.html
