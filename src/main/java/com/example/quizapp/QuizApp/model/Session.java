@@ -1,9 +1,14 @@
 package com.example.quizapp.QuizApp.model;
 
+import com.example.quizapp.QuizApp.utils.CalculateDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,11 +17,42 @@ import java.util.List;
 public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer session_Id;
+    public Integer sessionId;
 
-    @OneToOne
-    @JoinColumn(name="id")
-    User creator;
+    String dateAndTime ;
 
-    List<Integer> userList;
+    @JsonIgnore
+    Date startTimeStamp;
+
+    @JsonIgnore
+    Date expiryTimeStamp;
+
+    Integer delayDuration;
+
+    Integer duration;
+
+    @Column(name = "creator")
+    Integer userId;
+
+    String sessionTitle;
+
+    @ManyToMany(cascade =CascadeType.MERGE)
+
+    @JoinTable(
+            name ="session_question_mapping",
+            joinColumns = @JoinColumn(
+                    name = "sessionId",
+                    referencedColumnName = "sessionId"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "questionId",
+                    referencedColumnName = "id"
+            )
+    )
+    List<Question> sessionQuestionList;
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sessionId",referencedColumnName = "sessionId")
+    List<SessionUser> sessionUserList;
 }

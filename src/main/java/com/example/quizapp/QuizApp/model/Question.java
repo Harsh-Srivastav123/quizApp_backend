@@ -13,11 +13,11 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @AllArgsConstructor
-@Table(name = "quiz")
+
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    Integer id;
     String question;
     String options1;
     String options2;

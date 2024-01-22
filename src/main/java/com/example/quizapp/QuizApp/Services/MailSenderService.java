@@ -23,4 +23,14 @@ public class MailSenderService {
         simpleMailMessage.setTo(mail);
         javaMailSender.send(simpleMailMessage);
     }
+
+
+    public void sendMailToSessionUser(String mail,Integer sessionId,String sessionUserId,String userName){
+        SimpleMailMessage simpleMailMessage=new SimpleMailMessage();
+        simpleMailMessage.setFrom(from);
+        simpleMailMessage.setSubject("Hii you are invited for Quiz session ");
+        simpleMailMessage.setText("check your session credentials   "+ "sessionId  "+sessionId.toString()+"  sessionUserId  "+sessionUserId+ "  userName  " +userName );
+        simpleMailMessage.setTo(mail);
+        javaMailSender.send(simpleMailMessage);
+    }
 }

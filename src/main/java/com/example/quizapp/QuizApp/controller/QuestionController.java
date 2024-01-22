@@ -1,13 +1,19 @@
 package com.example.quizapp.QuizApp.controller;
 
 import com.example.quizapp.QuizApp.Services.QuestionServices;
+import com.example.quizapp.QuizApp.exceptions.QuestionNotFound;
+import com.example.quizapp.QuizApp.model.CategoryData;
 import com.example.quizapp.QuizApp.model.Question;
 import com.example.quizapp.QuizApp.model.QuestionList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.In;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -60,29 +66,34 @@ public class QuestionController {
 //    }
 
 
-    @GetMapping("/")
+    @GetMapping("")
     public QuestionList getQuestion(
-            @RequestParam(value = "pageNo",defaultValue = "1",required = false) Integer pageNo,
-            @RequestParam(value = "pageSize",defaultValue = "1",required = false) Integer pageSize,
+            @RequestParam(value = "pageNo",defaultValue = "0",required = false) Integer pageNo,
+            @RequestParam(value = "pageSize",defaultValue = "10",required = false) Integer pageSize,
             @RequestParam(value = "category",defaultValue = "all",required = false) String category,
             @RequestParam(value = "id",defaultValue = "0",required = false) Integer id
-    ){
+    ) throws QuestionNotFound {
 
-        QuestionList ql=new QuestionList();
-        ql.setQuestionList(questionServices.question(pageNo,pageSize,category,id));
+        QuestionList ql = new QuestionList();
+        ql.setQuestionList(questionServices.question(pageNo, pageSize, category, id));
         ql.setTotalQuestion(questionServices.categorySize(category));
         ql.setCategory(category);
-        if(!id.equals(0)){
-            ql.setCategory("questionById :- " +id);
+        if (!id.equals(0)) {
+            ql.setCategory("questionById :- " + id);
             ql.setTotalQuestion(1);
             return ql;
         }
         return ql;
     }
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<CategoryData>> getCategoryData(@PathVariable("category") String category){
+        List<CategoryData> categoryDataList=questionServices.getCategoryListData(category);
 
-
-
-
+        if(categoryDataList==null){
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(categoryDataList,HttpStatus.OK);
+    }
     @PostMapping("/update")
     public Question update(@RequestBody Question question){
         if(question!=null){

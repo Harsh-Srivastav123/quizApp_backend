@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.relational.core.sql.In;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
@@ -16,6 +17,12 @@ public interface QuestionDAO extends JpaRepository<Question, Integer> {
     Page<Question> findByCategory(String category, Pageable pageable);
     List<Question> findByDifficulty(String difficulty);
 
-    @Query(value = "SELECT COUNT(id) FROM Question WHERE category= :n",nativeQuery = true)
+    @Query(value = "SELECT COUNT(id) FROM question WHERE category= :n",nativeQuery = true)
     Integer categorySize(@Param("n")  String category);
+
+    @Query(value = "SELECT COUNT(id) FROM question WHERE category= :category AND difficulty= :n",nativeQuery = true)
+    Integer categoryWithDifficulty(@Param("category") String category , @Param("n")  String difficulty);
+
+    @Query(value = "SELECT DISTINCT(category) FROM question",nativeQuery = true)
+    List<String> allCategory();
 }

@@ -1,15 +1,13 @@
 package com.example.quizapp.QuizApp.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Response {
-    int id;
-    String rightAnswer;
+public class JwtRequests {
+    String userName;
+    String password;
 }

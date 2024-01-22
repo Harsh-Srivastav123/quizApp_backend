@@ -2,11 +2,15 @@ package com.example.quizapp.QuizApp.controller;
 
 import com.example.quizapp.QuizApp.Services.CloudinaryService;
 import com.example.quizapp.QuizApp.Services.UserService;
+import com.example.quizapp.QuizApp.events.RegistrationCompleteEvent;
 import com.example.quizapp.QuizApp.model.*;
 import com.example.quizapp.QuizApp.security.JwtHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +27,14 @@ import java.util.*;
 
 
 @RestController
-@RequestMapping("/quiz")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     UserService userService;
 
 
+    @Autowired
+    ApplicationEventPublisher publisher;
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -39,7 +45,7 @@ public class UserController {
     private AuthenticationManager manager;
     @Autowired
     private JwtHelper helper;
-
+    public record Message(String userId,String message){}
     @Autowired
     CloudinaryService cloudinaryService;
     @PostMapping("/response")
@@ -63,10 +69,10 @@ public class UserController {
     //create user
     @PostMapping(path="/createUser", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
 
-    public ResponseEntity<User>  createUser(
+    public ResponseEntity<Message>  createUser(
             @RequestParam("user") String user,
-            @RequestPart("image") MultipartFile file){
-        System.out.println("reach here");
+            @RequestPart("image") MultipartFile file, final HttpServletRequest request){
+//        System.out.println("reach here");
         Map data= new HashMap();
         User user1;
         // String to User
@@ -91,9 +97,31 @@ public class UserController {
         if(userService.getUserByUserName(user1.getUsername())==null){
             user1.setPassword(passwordEncoder.encode(user1.getPassword()));
             user1.setProfileUrl(data.get("url").toString());
-            return new ResponseEntity<>(userService.createUser(user1),HttpStatus.OK);
+            User newUser=userService.createUser(user1);
+            publisher.publishEvent(new RegistrationCompleteEvent(
+                            newUser,
+                            applicationUrl(request)
+                    )
+            );
+            return new ResponseEntity<>(new Message(newUser.getId().toString(),"User Created Successfully verify the email to further procced"),HttpStatus.OK);
         }
-        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new Message(null, "Unable to create user , userNane is already exists"), HttpStatus.BAD_REQUEST);
+    }
+
+    private String applicationUrl(HttpServletRequest request) {
+        return "http://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath();
+    }
+
+    @GetMapping("verifyRegistration")
+    public ResponseEntity<Message> verifyRegistration(@RequestParam("token") String token){
+        List<Integer> status=userService.validateToken(token);
+        if(status.get(0)==0){
+            return new ResponseEntity<>(new Message(null,"enter valid token"),HttpStatus.BAD_REQUEST);
+        }
+        if(status.get(1)==1){
+            return new ResponseEntity<>(new Message(status.get(0).toString(),"token expired"),HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(new Message(status.get(0).toString(),"token  verified Successfully "),HttpStatus.OK);
     }
 
     @PostMapping("/auth")

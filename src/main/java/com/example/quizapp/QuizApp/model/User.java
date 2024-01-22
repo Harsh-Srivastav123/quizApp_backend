@@ -39,6 +39,12 @@ public class User  implements UserDetails , Comparable<User>  {
     Integer totalQuiz;
     @OneToMany(cascade =CascadeType.ALL,mappedBy = "user")
     List<Result> resultList;
+
+
+    @OneToMany
+    @JoinColumn(name = "userId",referencedColumnName = "id")
+    List<Session> sessionList;
+
     @JsonIgnore
     boolean isEnabled;
 

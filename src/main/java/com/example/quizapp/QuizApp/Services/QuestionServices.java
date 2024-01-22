@@ -1,12 +1,15 @@
 package com.example.quizapp.QuizApp.Services;
 
 import com.example.quizapp.QuizApp.dao.QuestionDAO;
+import com.example.quizapp.QuizApp.exceptions.QuestionNotFound;
+import com.example.quizapp.QuizApp.model.CategoryData;
 import com.example.quizapp.QuizApp.model.Question;
 import com.example.quizapp.QuizApp.model.QuestionList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 
@@ -68,6 +71,7 @@ public class QuestionServices {
         List<Question> easyQuestion=questionDAO.findByDifficulty("easy");
         List<Question> mediumQuestion=questionDAO.findByDifficulty("medium");
         List<Question> difficultQuestion=questionDAO.findByDifficulty("hard");
+        System.out.println(easyQuestion);
         List<Question> questionPaper=new ArrayList<>();
         questionPaper.add(easyQuestion.get(addQuestion(easyQuestion)));
         questionPaper.add(easyQuestion.get(addQuestion(easyQuestion)));
@@ -83,6 +87,8 @@ public class QuestionServices {
         questionPaper.add(difficultQuestion.get(addQuestion(difficultQuestion)));
         questionPaper.add(difficultQuestion.get(addQuestion(difficultQuestion)));
         questionPaper.add(difficultQuestion.get(addQuestion(difficultQuestion)));
+        System.out.println(questionPaper);
+
         return new QuestionList(questionPaper,12,"QuestionPaper");
     }
     public int addQuestion(List<Question> questionsList){
@@ -93,10 +99,11 @@ public class QuestionServices {
     }
 
     public Integer categorySize(String category) {
+
         return questionDAO.categorySize(category);
     }
 
-    public List<Question> question(Integer pageNo, Integer pageSize, String category, Integer id) {
+    public List<Question> question(Integer pageNo, Integer pageSize, String category, Integer id) throws QuestionNotFound {
         List<Question> questionList=new ArrayList<>();
         if(id !=0){
             questionList.add(questionDAO.findById(id).get());
@@ -108,5 +115,31 @@ public class QuestionServices {
             return page.getContent();
         }
         return questionDAO.findByCategory(category,pg).getContent();
+    }
+
+    public List<CategoryData> getCategoryListData(String category) {
+        List<CategoryData> categoryDataList=new ArrayList<>();
+        if(category.equals("all")){
+            List<String> categoryList=questionDAO.allCategory();
+            for (String str:categoryList){
+                categoryDataList.add(getCategoryDate(str));
+            }
+            return categoryDataList;
+        }
+        else {
+           categoryDataList.add( getCategoryDate(category));
+        }
+
+        return categoryDataList;
+
+    }
+    public CategoryData getCategoryDate(String category){
+        CategoryData categoryData=new CategoryData();
+        categoryData.setCategory(category);
+        categoryData.setEasyQuestion(questionDAO.categoryWithDifficulty(category,"easy"));
+        categoryData.setHardQuestion(questionDAO.categoryWithDifficulty(category,"hard"));
+        categoryData.setMediumQuestion(questionDAO.categoryWithDifficulty(category,"medium"));
+        categoryData.setTotalQuestion(questionDAO.categorySize(category));
+        return categoryData;
     }
 }

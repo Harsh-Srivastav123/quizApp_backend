@@ -1,10 +1,9 @@
 package com.example.quizapp.QuizApp.dao;
 
-import com.example.quizapp.QuizApp.model.User;
+import com.example.quizapp.QuizApp.model.SessionUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserDAO extends JpaRepository<User,Integer> {
-    User findByUserName(String username);
+public interface SessionUserDAO extends JpaRepository<SessionUser,String> {
 }
