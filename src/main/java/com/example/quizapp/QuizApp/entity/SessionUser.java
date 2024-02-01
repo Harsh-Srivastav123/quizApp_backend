@@ -1,4 +1,4 @@
-package com.example.quizapp.QuizApp.model;
+package com.example.quizapp.QuizApp.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,12 +11,19 @@ import java.util.UUID;
 
 @Entity
 @Data
-public class SessionUser {
+public class SessionUser implements Comparable<SessionUser> {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String sessionUserId;
     Integer userId;
     String userName;
-    Integer Marks;
+    int Marks;
     Integer sessionRank;
+    boolean isCompleted;
+    String submissionTimeStamp;
+
+    @Override
+    public int compareTo(SessionUser sessionUser){
+        return this.getMarks()- sessionUser.getMarks();
+    }
 }

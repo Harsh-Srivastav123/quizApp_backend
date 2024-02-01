@@ -1,5 +1,6 @@
-package com.example.quizapp.QuizApp.model;
+package com.example.quizapp.QuizApp.entity;
 
+import com.example.quizapp.QuizApp.entity.User;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

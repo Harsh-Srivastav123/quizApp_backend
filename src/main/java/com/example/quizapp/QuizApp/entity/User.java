@@ -1,9 +1,8 @@
-package com.example.quizapp.QuizApp.model;
+package com.example.quizapp.QuizApp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,11 +34,10 @@ public class User  implements UserDetails , Comparable<User>  {
     String password;
     String profileUrl;
     int totalMarks;
-    Integer userRank;
-    Integer totalQuiz;
+    int userRank;
+    int totalQuiz;
     @OneToMany(cascade =CascadeType.ALL,mappedBy = "user")
     List<Result> resultList;
-
 
     @OneToMany
     @JoinColumn(name = "userId",referencedColumnName = "id")

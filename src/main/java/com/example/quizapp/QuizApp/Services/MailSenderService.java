@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailSenderService {
 
-    @Value("$(Quiz-App)")
+    @Value("$(Quizmate)")
     String from;
     @Autowired
     private JavaMailSender javaMailSender;

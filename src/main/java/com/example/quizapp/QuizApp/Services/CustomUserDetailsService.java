@@ -1,7 +1,7 @@
 package com.example.quizapp.QuizApp.Services;
 
 import com.example.quizapp.QuizApp.dao.UserDAO;
-import com.example.quizapp.QuizApp.model.User;
+import com.example.quizapp.QuizApp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

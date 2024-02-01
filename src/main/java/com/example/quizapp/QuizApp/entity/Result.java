@@ -1,13 +1,11 @@
-package com.example.quizapp.QuizApp.model;
+package com.example.quizapp.QuizApp.entity;
 
-import com.example.quizapp.QuizApp.utils.CalculateDateTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
 
 

@@ -1,4 +1,4 @@
-package com.example.quizapp.QuizApp.model;
+package com.example.quizapp.QuizApp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @AllArgsConstructor
+@ToString
 
 public class Question {
     @Id
@@ -28,19 +29,7 @@ public class Question {
     String rightAnswer;
     String category;
     String topic;
-    String marks;
+    Integer marks;
     String difficulty;
-
-    public Question(String question, String options1, String options2, String options3, String options4, String rightAnswer, String topic) {
-        this.question = question;
-        this.options1 = options1;
-        this.options2 = options2;
-        this.options3 = options3;
-        this.options4 = options4;
-        this.rightAnswer = rightAnswer;
-        this.category = category;
-        this.topic=topic;
-    }
-
-
+    boolean isEnabled;
 }
