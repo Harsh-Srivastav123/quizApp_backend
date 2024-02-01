@@ -53,14 +53,18 @@ public class QuestionServices {
 
 
 
-    public boolean delete(Integer id) {
-        try {
-            questionDAO.deleteById(id);
-            return true;
-        } catch (Exception e){
-            e.printStackTrace();
-            return false;
+    public void delete(Integer id) {
+        if(!questionDAO.existsById(id)){
+            throw new CustomException("Question Not found unable to delete check the id carefully ");
         }
+//        try {
+//            questionDAO.deleteById(id);
+//            return true;
+//        } catch (Exception e){
+//            e.printStackTrace();
+//            return false;
+//        }
+        questionDAO.deleteById(id);
     }
 
 //    public List<Question> questionByCategory(String category) {
@@ -135,7 +139,7 @@ public class QuestionServices {
 
         else {
             if(!questionDAO.existsByCategory(category)){
-                throw new CustomException("No Question found in this category");
+                throw new CustomException("category doesn't exist , for information of all category write all");
             }
             categoryDataList.add(getCategoryData(category));
         }

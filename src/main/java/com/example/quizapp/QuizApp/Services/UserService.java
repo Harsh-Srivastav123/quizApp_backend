@@ -182,12 +182,20 @@ public class UserService {
     }
 
     public boolean existById(Integer id) {
-        
+        if(id==null){
+            return false;
+        }
         return userDAO.existsById(id);
 
     }
 
     public boolean existByUserName(String userName) {
         return userDAO.findByUserName(userName) != null;
+    }
+
+    public void deleteUser(int id) {
+        if(!userDAO.existsById(id)){
+            throw new CustomException("Unable to delete user not found !! check the id carefully");
+        }
     }
 }

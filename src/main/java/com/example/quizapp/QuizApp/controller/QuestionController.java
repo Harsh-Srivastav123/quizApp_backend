@@ -17,14 +17,22 @@ import java.util.List;
 public class QuestionController {
     @Autowired
     QuestionServices questionServices;
+
+
+    public record Message(String questionId,String message){}
     @PostMapping("/add")
-    public QuestionDTO addQuestion(@RequestBody QuestionDTO question){
-        return questionServices.addQuestion(question);
+    public ResponseEntity<Message> addQuestion(@RequestBody QuestionDTO question){
+        int id=questionServices.addQuestion(question).getId();
+        return new ResponseEntity<>(new Message(Integer.toString(id),"question Added successfully"), HttpStatus.OK);
     }
 
     @PostMapping("/addList")
-    public boolean addQuestionList(@RequestBody List<QuestionDTO> questionList){
-        return questionServices.addQuestionList(questionList);
+    public ResponseEntity<String> addQuestionList(@RequestBody List<QuestionDTO> questionList){
+        boolean status= questionServices.addQuestionList(questionList);
+        if(status){
+            return new ResponseEntity<>("Question List added successfully",HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Unable to add questionList",HttpStatus.INTERNAL_SERVER_ERROR);
     }
     //    @GetMapping("/delete/{id}")
 //    public Boolean deleteById(@PathVariable Integer id){
@@ -90,8 +98,15 @@ public class QuestionController {
         }
         return new ResponseEntity<>(categoryDataList,HttpStatus.OK);
     }
-    @PostMapping("/update")
-    public QuestionDTO update(@RequestBody QuestionDTO question){
-        return questionServices.update(question);
+    @PatchMapping("/update")
+    public ResponseEntity<Message> update(@RequestBody QuestionDTO question){
+        questionServices.update(question);
+        return new ResponseEntity<>(new Message(question.getId().toString(),"question update successfully"),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Message> deleteQuestion(@PathVariable String id){
+        questionServices.delete(Integer.parseInt(id));
+        return new ResponseEntity<>(new Message(id,"Question deleted successfully"),HttpStatus.OK);
     }
 }

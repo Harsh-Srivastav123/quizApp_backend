@@ -139,7 +139,7 @@ public class SessionService {
         Date currTimeStamp=new Date();
 
         if(currTimeStamp.before(session.getStartTimeStamp())){
-            throw new CustomException("Session Quiz hasn't started yet !!");
+            throw new BadRequest("Session Quiz hasn't started yet !!");
         }
         if(currTimeStamp.after(session.getExpiryTimeStamp())){
             throw new BadRequest("Response can't be submitted Timeout!!!");
@@ -207,5 +207,12 @@ public class SessionService {
         }
         session.setSessionUserList(sessionUserList);
         sessionDAO.save(session);
+    }
+
+    public void deleteSession(int sessionId) {
+        if(!sessionDAO.existsById(sessionId)){
+            throw new CustomException("Session Not Found check the sessionId carefully");
+        }
+        sessionDAO.deleteById(sessionId);
     }
 }
