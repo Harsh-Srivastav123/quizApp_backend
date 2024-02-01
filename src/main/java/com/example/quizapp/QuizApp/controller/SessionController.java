@@ -7,6 +7,7 @@ import com.example.quizapp.QuizApp.model.SessionDTO;
 import com.example.quizapp.QuizApp.model.SessionResponse;
 import com.example.quizapp.QuizApp.model.SessionResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +44,12 @@ public class SessionController {
             return new ResponseEntity<>(sessionResult,HttpStatus.OK);
         }
         return new ResponseEntity<>(null,HttpStatus.BAD_REQUEST);
+    }
+
+    @DeleteMapping("deleteSession/{sessionId}")
+    public ResponseEntity<String> deleteSession(@PathVariable String sessionId){
+        sessionService.deleteSession(Integer.parseInt(sessionId));
+        return new ResponseEntity<>("Session deleted successfully sessionId = "+sessionId,HttpStatus.OK);
     }
 
 }

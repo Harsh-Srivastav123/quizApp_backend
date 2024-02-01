@@ -72,7 +72,7 @@ public class UserController {
 
     public ResponseEntity<Message>  createUser(
             @RequestParam("user") String user,
-            @RequestPart("image") MultipartFile file, final HttpServletRequest request){
+            @RequestPart(value = "image",required = false) MultipartFile file, final HttpServletRequest request){
 //        System.out.println("reach here");
         Map data= new HashMap();
         UserDTO user1;
@@ -98,7 +98,9 @@ public class UserController {
 
         if(!userService.existByUserName(user1.getUserName())  && !userService.existById(user1.getId())){
             user1.setPassword(passwordEncoder.encode(user1.getPassword()));
-            user1.setProfileUrl(data.get("url").toString());
+            if(data.get("url")!=null){
+                user1.setProfileUrl(data.get("url").toString());
+            }
             UserDTO newUser=userService.createUser(user1);
             publisher.publishEvent(new RegistrationCompleteEvent(
                             newUser,
@@ -147,6 +149,12 @@ public class UserController {
         } catch (BadCredentialsException e) {
             throw new BadCredentialsException(" Invalid Username or Password  !!");
         }
+    }
+
+    @DeleteMapping("deleteUser/{id}")
+    public ResponseEntity<Message> deleteUser(@PathVariable String id){
+        userService.deleteUser(Integer.parseInt(id));
+        return new ResponseEntity<>(new Message(id,"User deleted successfully"),HttpStatus.OK);
     }
     @GetMapping("/test")
     public String test(){

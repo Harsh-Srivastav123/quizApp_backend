@@ -1,12 +1,15 @@
 package com.example.quizapp.QuizApp.security;
 
 
+import com.example.quizapp.QuizApp.exceptions.BadRequest;
+import com.example.quizapp.QuizApp.exceptions.CustomException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import javax.management.BadAttributeValueExpException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +47,10 @@ public class JwtHelper {
     //check if the token has expired
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
-        return expiration.before(new Date());
+        if(expiration.before(new Date())){
+            throw new BadRequest("JWT token expired !!");
+        }
+        return false;
     }
 
     //generate token for user
