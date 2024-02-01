@@ -19,6 +19,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
+        distribution: 'adopt'
     
     - name: stop old container
       run: sudo docker container stop quizApp-container || true
