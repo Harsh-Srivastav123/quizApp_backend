@@ -1,5 +1,6 @@
 package com.example.quizapp.QuizApp.model;
 
+import com.example.quizapp.QuizApp.entity.Question;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuestionList {
-    List<Question> questionList;
+    List<QuestionDTO> questionList;
     int totalQuestion;
     String category;
 }

@@ -1,11 +1,18 @@
 package com.example.quizapp.QuizApp.Services;
 
-import ch.qos.logback.core.model.INamedModel;
 import com.example.quizapp.QuizApp.dao.QuestionDAO;
 import com.example.quizapp.QuizApp.dao.UserDAO;
 import com.example.quizapp.QuizApp.dao.VerificationDAO;
-import com.example.quizapp.QuizApp.model.*;
+import com.example.quizapp.QuizApp.entity.Question;
+import com.example.quizapp.QuizApp.entity.Result;
+import com.example.quizapp.QuizApp.entity.User;
+import com.example.quizapp.QuizApp.entity.VerificationToken;
+import com.example.quizapp.QuizApp.exceptions.CustomException;
+import com.example.quizapp.QuizApp.model.QuizResponse;
+import com.example.quizapp.QuizApp.model.Response;
+import com.example.quizapp.QuizApp.model.UserDTO;
 import com.example.quizapp.QuizApp.utils.CalculateDateTime;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +20,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class UserService {
 
 
+    @Autowired
+    ModelMapper modelMapper;
 
     @Autowired
     QuestionDAO questionDAO;
@@ -30,32 +40,35 @@ public class UserService {
     CalculateDateTime calculateDateTime;
 
     User user;
+
     public Result evaluateQuiz(QuizResponse quizResponse) {
-        Result result=new Result();
+        Result result = new Result();
 
-        List<Response> responseList=quizResponse.getResponseList();
-        int totalQuestion=quizResponse.getTotalQuestion();
-        int nonAttemptQuestion=totalQuestion-responseList.size();
-        int rightAnswerUser=0;
-        int totalMarks=0;
-        int wrongAnswer=0;
-        try{
-
-            for (Response response:responseList){
-                if(questionDAO.existsById(response.getId())){
-                    int id=response.getId();
-                    Question questionResponse=questionDAO.getReferenceById(id);
+        List<Response> responseList = quizResponse.getResponseList();
+        int totalQuestion = quizResponse.getTotalQuestion();
+        int nonAttemptQuestion = totalQuestion - responseList.size();
+        int rightAnswerUser = 0;
+        int totalMarks = 0;
+        int wrongAnswer = 0;
+        try {
+            for (Response response : responseList) {
+                if (questionDAO.existsById(response.getId())) {
+                    int id = response.getId();
+                    Question questionResponse = questionDAO.getReferenceById(id);
 //                  System.out.println(response.getRightAnswer());
 //                  System.out.println(questionResponse.getRightAnswer());
-                    if(questionResponse.getRightAnswer().equals(response.getRightAnswer())){
-                        System.out.println("rightAnswer");
+                    if (questionResponse.getRightAnswer().equals(response.getRightAnswer())) {
+//                        System.out.println("rightAnswer");
                         rightAnswerUser++;
-                        totalMarks+=Integer.parseInt(questionResponse.getMarks());
-                    }
-                    else {
+                        totalMarks += questionResponse.getMarks();
+                    } else {
                         wrongAnswer++;
                     }
                 }
+                else {
+                    throw new CustomException("Question not found check the Id carefully");
+                }
+
             }
             result.setCategory(quizResponse.getCategory());
             result.setTotalQuestion(totalQuestion);
@@ -82,39 +95,37 @@ public class UserService {
             // for giving quiz user must have to create account.
 
 
-            if(userDAO.existsById(quizResponse.getUserId())){
-                user=userDAO.getReferenceById(quizResponse.getUserId());
-                user.setTotalMarks(user.getTotalMarks()+totalMarks);
-                if(user.getTotalQuiz()!=null){
-                    user.setTotalQuiz(1+user.getTotalQuiz());
-                }
-                else {
-                    user.setTotalQuiz(1);
-                }
-
-                List<Result> list=user.getResultList();
-                list.add(result);
-                user.setResultList(list);
+            if (userDAO.findById(quizResponse.getUserId()).isEmpty()) {
+                throw new CustomException("Unable to find User check Id carefully");
             }
+            user = userDAO.findById(quizResponse.getUserId()).get();
+            user.setTotalMarks(user.getTotalMarks() + totalMarks);
+            if (user.getTotalQuiz() != 0) {
+                user.setTotalQuiz(1 + user.getTotalQuiz());
+            } else {
+                user.setTotalQuiz(1);
+            }
+
+            List<Result> list = user.getResultList();
+            list.add(result);
+            user.setResultList(list);
 
 
             result.setUser(user);
-            User curr=userDAO.save(user);
-            if(curr!=null){
-                evaluateRank();
-            }
+            userDAO.save(user);
+            evaluateRank();
             return result;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
     private void evaluateRank() {
-        List<User> userList=userDAO.findAll();
+        List<User> userList = userDAO.findAll();
         Collections.sort(userList);
-        int rank=1;
-        for (User user:userList){
+        int rank = 1;
+        for (User user : userList) {
             user.setUserRank(rank);
             rank++;
             userDAO.save(user);
@@ -122,40 +133,44 @@ public class UserService {
 
     }
 
-    public User getUser(Integer id) {
-        if(userDAO.existsById(id)){
-            return userDAO.findById(id).get();
+    public UserDTO getUser(Integer id) {
+
+        if(userDAO.findById(id).isEmpty()){
+            throw new CustomException("User not found check the userId carefully");
         }
-        return null;
+        return modelMapper.map(userDAO.findById(id).get(), UserDTO.class);
     }
 
-    public List<User> getAllUser() {
-        return userDAO.findAll();
+    public List<UserDTO> getAllUser() {
+        return userDAO.findAll().stream().map(object -> modelMapper.map(object, UserDTO.class)).collect(Collectors.toList());
     }
 
-    public User createUser(User user) {
-        return userDAO.save(user);
-    }
-    public User getUserByUserName(String userName){
-        return userDAO.findByUserName(userName);
+    public UserDTO createUser(UserDTO user) {
+        return modelMapper.map(userDAO.save(modelMapper.map(user, User.class)), UserDTO.class);
     }
 
-    public void saveVerificationToken(User user, String token) {
-        verificationDAO.save(new VerificationToken(token,user));
+    public UserDTO getUserByUserName(String userName) {
+        System.out.println("Hello this" + userDAO.findByUserName(userName).getUsername());
+        return modelMapper.map(userDAO.findByUserName(userName), UserDTO.class);
+    }
+
+    public void saveVerificationToken(UserDTO userDTO, String token) {
+        User user = userDAO.findByUserName(userDTO.getUserName());
+        verificationDAO.save(new VerificationToken(token, user));
     }
 
     public List<Integer> validateToken(String token) {
-        List<Integer> status=new ArrayList<>();
-        VerificationToken verificationToken=verificationDAO.findByToken(token);
-        if(verificationToken==null){
+        List<Integer> status = new ArrayList<>();
+        VerificationToken verificationToken = verificationDAO.findByToken(token);
+        if (verificationToken == null) {
             status.add(0);
             return status;
         }
         status.add(verificationToken.getUser().getId());
 
-        User user=verificationToken.getUser();
-        Calendar calendar=Calendar.getInstance();
-        if((verificationToken.getExpirationTime().getTime()-calendar.getTime().getTime())<=0){
+        User user = verificationToken.getUser();
+        Calendar calendar = Calendar.getInstance();
+        if ((verificationToken.getExpirationTime().getTime() - calendar.getTime().getTime()) <= 0) {
             verificationDAO.delete(verificationToken);
             status.add(1);
             userDAO.delete(verificationToken.getUser());
@@ -164,5 +179,15 @@ public class UserService {
         userDAO.save(user);
         status.add(2);
         return status;
+    }
+
+    public boolean existById(Integer id) {
+        
+        return userDAO.existsById(id);
+
+    }
+
+    public boolean existByUserName(String userName) {
+        return userDAO.findByUserName(userName) != null;
     }
 }

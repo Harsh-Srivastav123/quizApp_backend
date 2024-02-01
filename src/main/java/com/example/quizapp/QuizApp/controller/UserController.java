@@ -2,12 +2,13 @@ package com.example.quizapp.QuizApp.controller;
 
 import com.example.quizapp.QuizApp.Services.CloudinaryService;
 import com.example.quizapp.QuizApp.Services.UserService;
+import com.example.quizapp.QuizApp.entity.Result;
+
 import com.example.quizapp.QuizApp.events.RegistrationCompleteEvent;
 import com.example.quizapp.QuizApp.model.*;
 import com.example.quizapp.QuizApp.security.JwtHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -56,12 +57,12 @@ public class UserController {
         return userService.evaluateQuiz(quizResponse);
     }
     @GetMapping("/user/{id}")
-    public User getUser(@PathVariable Integer id){
+    public UserDTO getUser(@PathVariable Integer id){
         return userService.getUser(id);
     }
     @GetMapping("/user")
-    public List<User> getALlUser(){
-        List<com.example.quizapp.QuizApp.model.User> userList = userService.getAllUser();
+    public List<UserDTO> getALlUser(){
+        List<UserDTO> userList = userService.getAllUser();
         Collections.sort(userList);
         return userList;
     }
@@ -74,11 +75,11 @@ public class UserController {
             @RequestPart("image") MultipartFile file, final HttpServletRequest request){
 //        System.out.println("reach here");
         Map data= new HashMap();
-        User user1;
+        UserDTO user1;
         // String to User
         ObjectMapper mapper=new ObjectMapper();
         try {
-            user1 = mapper.readValue(user, User.class);
+            user1 = mapper.readValue(user, UserDTO.class);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -94,10 +95,11 @@ public class UserController {
 //        else {
 //            user1.setProfileUrl(data.get("url").toString());
 //        }
-        if(userService.getUserByUserName(user1.getUsername())==null){
+
+        if(!userService.existByUserName(user1.getUserName())  && !userService.existById(user1.getId())){
             user1.setPassword(passwordEncoder.encode(user1.getPassword()));
             user1.setProfileUrl(data.get("url").toString());
-            User newUser=userService.createUser(user1);
+            UserDTO newUser=userService.createUser(user1);
             publisher.publishEvent(new RegistrationCompleteEvent(
                             newUser,
                             applicationUrl(request)
@@ -105,7 +107,7 @@ public class UserController {
             );
             return new ResponseEntity<>(new Message(newUser.getId().toString(),"User Created Successfully verify the email to further procced"),HttpStatus.OK);
         }
-        return new ResponseEntity<>(new Message(null, "Unable to create user , userNane is already exists"), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new Message(null, "Unable to create user , user is already exists"), HttpStatus.BAD_REQUEST);
     }
 
     private String applicationUrl(HttpServletRequest request) {
