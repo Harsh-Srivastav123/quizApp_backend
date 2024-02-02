@@ -6,6 +6,7 @@ import com.example.quizapp.QuizApp.entity.Result;
 
 import com.example.quizapp.QuizApp.events.RegistrationCompleteEvent;
 import com.example.quizapp.QuizApp.model.*;
+import com.example.quizapp.QuizApp.security.JwtAuthenticationFilter;
 import com.example.quizapp.QuizApp.security.JwtHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -44,17 +45,20 @@ public class UserController {
 
     @Autowired
     private AuthenticationManager manager;
+
+
+    @Autowired
+    JwtAuthenticationFilter jwtAuthenticationFilter;
     @Autowired
     private JwtHelper helper;
     public record Message(String userId,String message){}
     @Autowired
     CloudinaryService cloudinaryService;
     @PostMapping("/response")
-    public Result evaluateQuiz(@RequestBody QuizResponse quizResponse){
-        if(quizResponse==null){
-            return null;
-        }
-        return userService.evaluateQuiz(quizResponse);
+    public ResponseEntity<Result> evaluateQuiz(@RequestBody QuizResponse quizResponse){
+
+        quizResponse.setUserId(userService.getUserByUserName(jwtAuthenticationFilter.getUserNameByToken()).getId());
+        return new ResponseEntity<>(userService.evaluateQuiz(quizResponse),HttpStatus.OK);
     }
     @GetMapping("/user/{id}")
     public UserDTO getUser(@PathVariable Integer id){

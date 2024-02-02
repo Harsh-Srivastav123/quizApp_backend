@@ -1,6 +1,8 @@
 package com.example.quizapp.QuizApp.security;
 
 
+import com.example.quizapp.QuizApp.exceptions.BadRequest;
+import com.example.quizapp.QuizApp.model.UserDTO;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.FilterChain;
@@ -10,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,9 +33,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private JwtHelper jwtHelper;
 
 
+
     @Autowired
     private UserDetailsService userDetailsService;
 
+    String  userNameByToken;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String requestHeader = request.getHeader("Authorization");
@@ -42,21 +47,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String username = null;
         String token = null;
         if (requestHeader != null && requestHeader.startsWith("Bearer")) {
-            //looking good
+
             token = requestHeader.substring(7);
             try {
-
                 username = this.jwtHelper.getUsernameFromToken(token);
-
             } catch (IllegalArgumentException e) {
                 logger.info("Illegal Argument while fetching the username !!");
                 e.printStackTrace();
             } catch (ExpiredJwtException e) {
                 logger.info("Given jwt token is expired !!");
                 e.printStackTrace();
+                throw new BadRequest("Jwt token expired");
             } catch (MalformedJwtException e) {
                 logger.info("Some changed has done in token !! Invalid Token");
                 e.printStackTrace();
+                throw new BadRequest("Jwt token is manipulated");
             } catch (Exception e) {
                 e.printStackTrace();
 
@@ -73,7 +78,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
             //fetch user detail from username
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+             UserDetails userDetails= this.userDetailsService.loadUserByUsername(username);
+             userNameByToken=userDetails.getUsername();
             Boolean validateToken = this.jwtHelper.validateToken(token, userDetails);
             if (validateToken) {
 
@@ -92,5 +98,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
 
+    }
+
+    public String getUserNameByToken() {
+        return userNameByToken;
     }
 }
