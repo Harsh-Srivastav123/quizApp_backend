@@ -1,11 +1,13 @@
 package com.example.quizapp.QuizApp.controller;
 
 import com.example.quizapp.QuizApp.Services.SessionService;
+import com.example.quizapp.QuizApp.Services.UserService;
 import com.example.quizapp.QuizApp.entity.Session;
 import com.example.quizapp.QuizApp.model.Response;
 import com.example.quizapp.QuizApp.model.SessionDTO;
 import com.example.quizapp.QuizApp.model.SessionResponse;
 import com.example.quizapp.QuizApp.model.SessionResult;
+import com.example.quizapp.QuizApp.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.In;
 import org.springframework.http.HttpStatus;
@@ -21,10 +23,15 @@ public class SessionController {
     @Autowired
     SessionService sessionService;
     public record Message(String sessionId,String message){}
+    @Autowired
+    UserService userService;
 
+    @Autowired
+    JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @PostMapping("/createSession")
     public ResponseEntity<Message> createSession(@RequestBody SessionDTO session){
+        session.setUserId(userService.getUserByUserName(jwtAuthenticationFilter.getUserNameByToken()).getId());
         SessionDTO session1=sessionService.createSession(session);
         if(session1!=null){
             return new ResponseEntity<>(new Message(session1.getSessionId().toString(),"Session Created Successfully"), HttpStatus.OK);
@@ -39,6 +46,7 @@ public class SessionController {
 
     @PostMapping("/sessionResponse")
     public ResponseEntity<SessionResult> submitResponse(@RequestBody SessionResponse sessionResponse){
+        sessionResponse.setUserId(userService.getUserByUserName(jwtAuthenticationFilter.getUserNameByToken()).getId());
         SessionResult sessionResult=sessionService.submitResponse(sessionResponse);
         if(sessionResult!=null){
             return new ResponseEntity<>(sessionResult,HttpStatus.OK);

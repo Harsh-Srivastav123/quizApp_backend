@@ -27,7 +27,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(BadRequest.class)
     public ResponseEntity<ErrorMessage> badRequest(BadRequest exception,
                                                                     WebRequest request) {
-        ErrorMessage message = new ErrorMessage(HttpStatus.NOT_FOUND,
+        ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST,
                 exception.getMessage());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
