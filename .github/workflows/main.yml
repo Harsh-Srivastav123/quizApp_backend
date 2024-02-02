@@ -1,0 +1,38 @@
+name:  Ci/ Cd Quizmate
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ['self-hosted', 'Linux', 'X64' ]
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+    
+    - name: stop old container
+      run: sudo docker container stop quizmate-container || true
+    - name: Delete old container 
+      run: sudo docker container rm quizmate-container|| true
+    - name: Delete old image 
+      run:  sudo docker image rm quizmate || true
+
+    
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+      
+    - name: Build the Docker image
+      run: sudo docker build -t quizmate .
+    - name: Run docker image
+      run: sudo docker run  -d -p 8080:8080 --name quizmate-container quizmate
