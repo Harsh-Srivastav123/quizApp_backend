@@ -1,7 +1,7 @@
 
 # QuizApp - Spring Boot Project
 
-QuizApp, powered by Spring Boot, is a dynamic backend application revolutionizing the quiz experience. Users enjoy seamless CRUD operations on questions, with easy topic filtering. Personalized profiles with Cloudinary-managed images enhance user engagement. Robust security features, including Spring Security and JWT authentication, safeguard user data. Unique to QuizApp is the ability to generate custom question papers and the question are randomly picked from all difficulty level to provide balance paper, adding a personalized touch to quiz sessions. User can make their profile to take quiz and keep track record of their progress . MySQL integration stores responses for progress tracking. Deployed on AWS, QuizApp ensures scalability and reliability, making it a go-to platform for interactive and secure quizzing.
+QuizApp, powered by Spring Boot, is a dynamic backend application revolutionizing the quiz experience. Users enjoy seamless CRUD operations on questions, with easy topic filtering. Personalized profiles with Cloudinary-managed images enhance user engagement. Robust security features, including Spring Security and JWT authentication, safeguard user data. Unique to QuizApp is the ability to generate custom question papers and the question are randomly picked from all difficulty level to provide balance paper, adding a personalized touch to quiz sessions. User can make their profile to take quiz and keep track record of their progress . MySQL integration stores responses for progress tracking. Deployed on AWS, QuizApp ensures scalability and reliability, making it a go-to platform for interactive and secure quizzing. EC2
 
 ## Table of Contents
 
