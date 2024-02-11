@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/question")
+@CrossOrigin
 public class QuestionController {
     @Autowired
     QuestionServices questionServices;
