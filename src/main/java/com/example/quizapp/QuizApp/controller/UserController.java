@@ -30,6 +30,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin()
 public class UserController {
     @Autowired
     UserService userService;
