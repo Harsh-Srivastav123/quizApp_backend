@@ -24,9 +24,6 @@ jobs:
     - name: stop old container
       run: sudo docker container stop quizmate-container || true
 
-    - name: Build the Docker image
-      run: sudo docker build -t quizmate .
-
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Delete old container 
@@ -34,8 +31,8 @@ jobs:
     - name: Delete old image 
       run:  sudo docker image rm quizmate || true
 
-    
-  
+    - name: Build the Docker image
+      run: sudo docker build -t quizmate .
       
    
     - name: Run docker image
