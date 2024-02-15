@@ -24,7 +24,8 @@ jobs:
     - name: stop old container
       run: sudo docker container stop quizmate-container || true
 
-
+    - name: Build the Docker image
+      run: sudo docker build -t quizmate .
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
@@ -36,7 +37,6 @@ jobs:
     
   
       
-    - name: Build the Docker image
-      run: sudo docker build -t quizmate .
+   
     - name: Run docker image
       run: sudo docker run -d --env-file /home/ubuntu/env.properties -p 8080:8080 --name quizmate-container quizmate  sleep infinity| echo "success"
