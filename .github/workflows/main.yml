@@ -35,4 +35,4 @@ jobs:
     - name: Build the Docker image
       run: sudo docker build -t quizmate .
     - name: Run docker image
-      run: sudo docker run  -d -p 8080:8080 --name quizmate-container quizmate
+      run: sudo docker run -d --env-file /home/ubuntu/env.properties -p 8080:8080 --name quizmate-container quizmate  sleep infinity| echo "success"
