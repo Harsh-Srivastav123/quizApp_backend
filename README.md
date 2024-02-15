@@ -1,7 +1,12 @@
 
-# QuizApp - Spring Boot Project
+# QuizMate - Spring Boot Project
 
-QuizApp, powered by Spring Boot, is a dynamic backend application revolutionizing the quiz experience. Users enjoy seamless CRUD operations on questions, with easy topic filtering. Personalized profiles with Cloudinary-managed images enhance user engagement. Robust security features, including Spring Security and JWT authentication, safeguard user data. Unique to QuizApp is the ability to generate custom question papers and the question are randomly picked from all difficulty level to provide balance paper, adding a personalized touch to quiz sessions. User can make their profile to take quiz and keep track record of their progress . MySQL integration stores responses for progress tracking. Deployed on AWS, QuizApp ensures scalability and reliability, making it a go-to platform for interactive and secure quizzing. EC2
+
+QuizMate, powered by Spring Boot, redefines the quiz experience with its dynamic and user-centric design. Offering seamless CRUD operations on questions and easy topic filtering, users can effortlessly navigate and create quizzes tailored to their interests. Personalized profiles, enhanced with Cloudinary-managed images, further elevate user engagement, creating a vibrant and interactive platform.
+
+Security is paramount in QuizApp, with robust features such as Spring Security and JWT authentication ensuring the safety of user data. Unique to QuizMate is the ability to generate custom question papers, providing a personalized touch to quiz sessions. The application also offers email verification during account creation, adding an extra layer of security and verification. Additionally, the session creation feature allows users to conduct private quiz sessions, sharing session credentials through email. This feature enables users to invite others to participate in quizzes, with session details and progress tracking stored for a seamless and enjoyable quizzing experience.
+
+QuizMate is deployed on AWS EC2 using Docker containers, leveraging the scalability and reliability of AWS infrastructure. The database is hosted on AWS RDS, ensuring efficient data management and accessibility. Additionally, QuizMate employs a comprehensive CI/CD pipeline, powered by GitHub Actions, to streamline development process. This integration ensures rapid iteration and delivery of new features, maintaining QuizMate's position as the preferred platform for interactive and secure quizzing.
 
 ## Table of Contents
 
