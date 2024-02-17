@@ -3,6 +3,7 @@ package com.example.quizapp.QuizApp.controller;
 import com.example.quizapp.QuizApp.Services.QuestionServices;
 import com.example.quizapp.QuizApp.model.CategoryData;
 
+import com.example.quizapp.QuizApp.model.CustomQuiz;
 import com.example.quizapp.QuizApp.model.QuestionDTO;
 import com.example.quizapp.QuizApp.model.QuestionList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,19 +77,30 @@ public class QuestionController {
             @RequestParam(value = "pageNo",defaultValue = "0",required = false) Integer pageNo,
             @RequestParam(value = "pageSize",defaultValue = "10",required = false) Integer pageSize,
             @RequestParam(value = "category",defaultValue = "all",required = false) String category,
+            @RequestParam(value = "difficulty",required = false) String difficulty,
             @RequestParam(value = "id",defaultValue = "0",required = false) Integer id
     ) {
 
         QuestionList ql = new QuestionList();
-        ql.setQuestionList(questionServices.question(pageNo, pageSize, category, id));
-        ql.setTotalQuestion(questionServices.categorySize(category));
-        ql.setCategory(category);
+        ql.setQuestionList(questionServices.question(pageNo, pageSize, difficulty,category, id));
+        ql.setTotalQuestion(questionServices.categorySize(category,difficulty));
+        if(difficulty==null){
+            ql.setCategory(category);
+        }
+        else {
+            ql.setCategory(category+" "+difficulty);
+        }
         if (!id.equals(0)) {
             ql.setCategory("questionById :- " + id);
             ql.setTotalQuestion(1);
             return ql;
         }
         return ql;
+    }
+
+    @PostMapping("/customQuiz")
+    public ResponseEntity<QuestionList> customQuiz(@RequestBody List<CustomQuiz> customQuizList){
+        return new ResponseEntity<>(questionServices.customQuiz(customQuizList),HttpStatus.OK);
     }
     @GetMapping("/category/{category}")
     public ResponseEntity<List<CategoryData>> getCategoryData(@PathVariable("category") String category){
@@ -109,5 +121,15 @@ public class QuestionController {
     public ResponseEntity<Message> deleteQuestion(@PathVariable String id){
         questionServices.delete(Integer.parseInt(id));
         return new ResponseEntity<>(new Message(id,"Question deleted successfully"),HttpStatus.OK);
+    }
+
+
+    @GetMapping("/aiResponse/{id}")
+    public ResponseEntity<String> aiResponse(@PathVariable Integer id){
+        String str= questionServices.aiResponse(id);
+        if(str!=null){
+            return new ResponseEntity<>(str,HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Unable to fetch",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
