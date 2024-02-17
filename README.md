@@ -63,7 +63,7 @@ Easily manage your questions:
 Efficiently find questions by topic:
 - Use the topic filter to narrow down questions by category.
 - Quickly access questions related to specific subjects.
-- Filter question according to their diificulty.
+- Filter question according to their difficulty.
 
 ### 3. User Profiles
 
