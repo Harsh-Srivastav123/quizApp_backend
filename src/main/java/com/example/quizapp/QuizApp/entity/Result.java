@@ -33,7 +33,5 @@ public class Result {
     @JoinColumn(name = "id")
     User user;
 
-
-
 }
 

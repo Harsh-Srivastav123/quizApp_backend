@@ -56,7 +56,7 @@ public class UserController {
     @Autowired
     CloudinaryService cloudinaryService;
     @PostMapping("/response")
-    public ResponseEntity<Result> evaluateQuiz(@RequestBody QuizResponse quizResponse){
+    public ResponseEntity<DetailResult> evaluateQuiz(@RequestBody QuizResponse quizResponse){
 
         quizResponse.setUserId(userService.getUserByUserName(jwtAuthenticationFilter.getUserNameByToken()).getId());
         return new ResponseEntity<>(userService.evaluateQuiz(quizResponse),HttpStatus.OK);

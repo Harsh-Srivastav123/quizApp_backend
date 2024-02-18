@@ -8,6 +8,7 @@ import com.example.quizapp.QuizApp.entity.Result;
 import com.example.quizapp.QuizApp.entity.User;
 import com.example.quizapp.QuizApp.entity.VerificationToken;
 import com.example.quizapp.QuizApp.exceptions.CustomException;
+import com.example.quizapp.QuizApp.model.DetailResult;
 import com.example.quizapp.QuizApp.model.QuizResponse;
 import com.example.quizapp.QuizApp.model.Response;
 import com.example.quizapp.QuizApp.model.UserDTO;
@@ -41,8 +42,10 @@ public class UserService {
 
     User user;
 
-    public Result evaluateQuiz(QuizResponse quizResponse) {
+    public DetailResult evaluateQuiz(QuizResponse quizResponse) {
         Result result = new Result();
+        DetailResult detailResult = new DetailResult();
+        List<Response> resultList = new ArrayList<>();
 
         List<Response> responseList = quizResponse.getResponseList();
         int totalQuestion = quizResponse.getTotalQuestion();
@@ -52,23 +55,30 @@ public class UserService {
         int wrongAnswer = 0;
         try {
             for (Response response : responseList) {
+                Response resultResponse = new Response();
                 if (questionDAO.existsById(response.getId())) {
                     int id = response.getId();
                     Question questionResponse = questionDAO.getReferenceById(id);
+
+                    resultResponse.setQuestion(questionResponse.getQuestion());
+                    resultResponse.setId(id);
+                    resultResponse.setRightAnswer(questionResponse.getRightAnswer());
+                    resultResponse.setSubmitResponse(response.getRightAnswer());
 //                  System.out.println(response.getRightAnswer());
 //                  System.out.println(questionResponse.getRightAnswer());
                     if (questionResponse.getRightAnswer().equals(response.getRightAnswer())) {
+                        resultResponse.setResult(true);
 //                        System.out.println("rightAnswer");
                         rightAnswerUser++;
                         totalMarks += questionResponse.getMarks();
                     } else {
+                        resultResponse.setResult(false);
                         wrongAnswer++;
                     }
-                }
-                else {
+                } else {
                     throw new CustomException("Question not found check the Id carefully");
                 }
-
+                resultList.add(resultResponse);
             }
             result.setCategory(quizResponse.getCategory());
             result.setTotalQuestion(totalQuestion);
@@ -78,6 +88,8 @@ public class UserService {
             result.setTotalAttemptQuestion(responseList.size());
             result.setWrongAnswer(wrongAnswer);
             result.setTimeStamp(calculateDateTime.calculateDateTime());
+            detailResult.setResult(result);
+            detailResult.setResponseList(resultList);
 //            if(quizResponse.getUserId()==null){
 //                user=new User();
 //                user.setTotalMarks(rightAnswerUser);
@@ -114,11 +126,11 @@ public class UserService {
             result.setUser(user);
             userDAO.save(user);
             evaluateRank();
-            return result;
+
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return detailResult;
     }
 
     private void evaluateRank() {
@@ -135,7 +147,7 @@ public class UserService {
 
     public UserDTO getUser(Integer id) {
 
-        if(userDAO.findById(id).isEmpty()){
+        if (userDAO.findById(id).isEmpty()) {
             throw new CustomException("User not found check the userId carefully");
         }
         return modelMapper.map(userDAO.findById(id).get(), UserDTO.class);
@@ -182,7 +194,7 @@ public class UserService {
     }
 
     public boolean existById(Integer id) {
-        if(id==null){
+        if (id == null) {
             return false;
         }
         return userDAO.existsById(id);
@@ -194,7 +206,7 @@ public class UserService {
     }
 
     public void deleteUser(int id) {
-        if(!userDAO.existsById(id)){
+        if (!userDAO.existsById(id)) {
             throw new CustomException("Unable to delete user not found !! check the id carefully");
         }
     }
