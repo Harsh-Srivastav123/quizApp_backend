@@ -178,8 +178,6 @@ public class QuestionServices {
     }
 
     public QuestionList customQuiz(List<CustomQuiz> customQuizList) {
-        CategoryData categoryData=new CategoryData();
-        categoryData.setCategory("Custom Quiz");
         List<QuestionDTO> questionList=new ArrayList<>();
         for (CustomQuiz customQuiz:customQuizList){
             if(customQuiz.getEasy()>0){
@@ -201,6 +199,7 @@ public class QuestionServices {
         QuestionList ql=new QuestionList();
         ql.setQuestionList(questionList);
         ql.setTotalQuestion(questionList.size());
+        ql.setCategory("Custom Quiz");
         return ql;
     }
 
