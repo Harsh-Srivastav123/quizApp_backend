@@ -64,6 +64,7 @@ public class UserService {
                     resultResponse.setId(id);
                     resultResponse.setRightAnswer(questionResponse.getRightAnswer());
                     resultResponse.setSubmitResponse(response.getRightAnswer());
+                    resultResponse.setMarks(questionResponse.getMarks()) ;
 //                  System.out.println(response.getRightAnswer());
 //                  System.out.println(questionResponse.getRightAnswer());
                     if (questionResponse.getRightAnswer().equals(response.getRightAnswer())) {

@@ -19,6 +19,8 @@ public class Response {
     boolean result;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     String question;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    Integer marks;
 
     public Response(int id, String rightAnswer) {
         this.id = id;
