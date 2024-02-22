@@ -178,6 +178,7 @@ public class QuestionServices {
     }
 
     public QuestionList customQuiz(List<CustomQuiz> customQuizList) {
+
         List<QuestionDTO> questionList=new ArrayList<>();
         for (CustomQuiz customQuiz:customQuizList){
             if(customQuiz.getEasy()>0){
