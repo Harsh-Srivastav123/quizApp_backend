@@ -19,7 +19,7 @@ public class JwtHelper {
 
 
     //requirement :
-    public static final long JWT_TOKEN_VALIDITY = 60*15 ;
+    public static final long JWT_TOKEN_VALIDITY = 60*20 ;
 
     //    public static final long JWT_TOKEN_VALIDITY =  60;
     private String secret = "afafasfafafasfasfasfafacasdasfasxASFACASDFACASDFASFASFDAFASFASDAADSCSDFADCVSGCFVADXCcadwavfsfarvf";
