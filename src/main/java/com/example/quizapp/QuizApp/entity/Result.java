@@ -27,6 +27,7 @@ public class Result {
     String category;
     Integer totalMarks;
     String timeStamp ;
+    Integer maximumMarks;
 
     @ManyToOne
     @JsonIgnore

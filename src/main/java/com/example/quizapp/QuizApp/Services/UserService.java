@@ -58,16 +58,30 @@ public class UserService {
                 Response resultResponse = new Response();
                 if (questionDAO.existsById(response.getId())) {
                     int id = response.getId();
-                    Question questionResponse = questionDAO.getReferenceById(id);
+                    if(questionDAO.findById(id).isEmpty()){
+                        throw new CustomException("question not found check the id carefully");
+                    }
+                    Question questionResponse = questionDAO.findById(id).get();
 
                     resultResponse.setQuestion(questionResponse.getQuestion());
                     resultResponse.setId(id);
                     resultResponse.setRightAnswer(questionResponse.getRightAnswer());
-                    resultResponse.setSubmitResponse(response.getRightAnswer());
+                    System.out.println(response.getRightOption());
+                    if(response.getRightOption() ==1) resultResponse.setSubmitResponse(questionResponse.getOptions1());
+                    else if(response.getRightOption() ==2) resultResponse.setSubmitResponse(questionResponse.getOptions2());
+                    else if(response.getRightOption() ==3) resultResponse.setSubmitResponse(questionResponse.getOptions3());
+                    else if(response.getRightOption() ==4) resultResponse.setSubmitResponse(questionResponse.getOptions4());
+//                    switch (response.getRightOption()){
+//                        case 1:resultResponse.setSubmitResponse(questionResponse.getOptions1());
+//                        case 2:resultResponse.setSubmitResponse(questionResponse.getOptions2());
+//                        case 3:resultResponse.setSubmitResponse(questionResponse.getOptions3());
+//                        case 4:resultResponse.setSubmitResponse(questionResponse.getOptions4());
+//                    }
                     resultResponse.setMarks(questionResponse.getMarks()) ;
 //                  System.out.println(response.getRightAnswer());
 //                  System.out.println(questionResponse.getRightAnswer());
-                    if (questionResponse.getRightAnswer().equals(response.getRightAnswer())) {
+                    //questionResponse.getRightAnswer().equals(response.getRightAnswer())
+                    if (questionResponse.getRightOption().intValue()==response.getRightOption().intValue()) {
                         resultResponse.setResult(true);
 //                        System.out.println("rightAnswer");
                         rightAnswerUser++;
@@ -89,6 +103,7 @@ public class UserService {
             result.setTotalAttemptQuestion(responseList.size());
             result.setWrongAnswer(wrongAnswer);
             result.setTimeStamp(calculateDateTime.calculateDateTime());
+            result.setMaximumMarks(quizResponse.getMaximumMarks());
             detailResult.setResult(result);
             detailResult.setResponseList(resultList);
 //            if(quizResponse.getUserId()==null){

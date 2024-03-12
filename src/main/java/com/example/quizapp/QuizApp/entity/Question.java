@@ -25,11 +25,12 @@ public class Question {
     String options3;
     String options4;
 
-    @JsonProperty(  access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(  access = JsonProperty.Access.WRITE_ONLY)
     String rightAnswer;
     String category;
     String topic;
     Integer marks;
     String difficulty;
+    Integer rightOption;
     boolean isEnabled;
 }
