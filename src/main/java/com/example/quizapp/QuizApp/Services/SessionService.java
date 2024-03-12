@@ -51,6 +51,13 @@ public class SessionService {
         List<QuestionDTO> updatedQuestionList=new ArrayList<>();
         for (QuestionDTO questionDTO : sessionDTO.getSessionQuestionList()) {
             if (questionDTO.getId() == null) {
+
+                int rightOption=-1;
+                if(questionDTO.getRightAnswer().equals(questionDTO.getOptions1())) rightOption=1;
+                else if(questionDTO.getRightAnswer().equals(questionDTO.getOptions2())) rightOption=2;
+                else if(questionDTO.getRightAnswer().equals(questionDTO.getOptions3())) rightOption=3;
+                else if(questionDTO.getRightAnswer().equals(questionDTO.getOptions4())) rightOption=4;
+                questionDTO.setRightOption(rightOption);
                 Question question=questionDAO.save(modelMapper.map(questionDTO, Question.class));
                 updatedQuestionList.add(new QuestionDTO(question.getId()));
                 log.info("new question created in session",question);
@@ -162,7 +169,11 @@ public class SessionService {
                 int wrongAnswer=0;
                 int marks=0;
                 for(Response response:sessionResponse.getResponseList()){
-                    if(questionDAO.getReferenceById(response.getId()).getRightAnswer().equals(response.getRightAnswer())){
+                    if(questionDAO.findById(response.getId()).isEmpty()){
+                        throw new BadRequest("Question not found check the question Id carefully");
+                    }
+                    //questionDAO.getReferenceById(response.getId()).getRightAnswer().equals(response.getRightAnswer())
+                    if(questionDAO.findById(response.getId()).get().getRightOption().intValue()== response.getRightOption().intValue()){
                         rightAnswer++;
                         marks+=questionDAO.getReferenceById(response.getId()).getMarks();
                     }

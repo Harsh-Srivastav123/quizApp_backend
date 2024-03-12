@@ -12,6 +12,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Response {
     int id;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    Integer rightOption;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     String rightAnswer;
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     String submitResponse;

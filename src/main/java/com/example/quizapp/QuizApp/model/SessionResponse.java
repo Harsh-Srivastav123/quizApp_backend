@@ -12,3 +12,7 @@ public class SessionResponse {
     Integer userId;
     String sessionUserId;
 }
+
+
+
+

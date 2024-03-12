@@ -14,7 +14,8 @@ import java.util.List;
 
 public class QuizResponse {
     List<Response> responseList;
-    int totalQuestion;
+    Integer totalQuestion;
+    Integer maximumMarks;
     String category;
     @JsonIgnore
     Integer userId;

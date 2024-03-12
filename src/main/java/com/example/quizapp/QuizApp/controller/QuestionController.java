@@ -1,6 +1,7 @@
 package com.example.quizapp.QuizApp.controller;
 
 import com.example.quizapp.QuizApp.Services.QuestionServices;
+import com.example.quizapp.QuizApp.entity.Question;
 import com.example.quizapp.QuizApp.model.CategoryData;
 
 import com.example.quizapp.QuizApp.model.CustomQuiz;
@@ -71,6 +72,11 @@ public class QuestionController {
 //        return questionServices.delete(id);
 //    }
 
+    @GetMapping("/showAll")
+    public List<Question> getAll(){
+        return questionServices.getAll();
+    }
+
 
     @GetMapping("")
     public QuestionList getQuestion(
@@ -132,4 +138,10 @@ public class QuestionController {
         }
         return new ResponseEntity<>("Unable to fetch",HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @GetMapping("/test")
+    public boolean test(){
+        return questionServices.testing();
+    }
+
 }

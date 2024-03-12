@@ -14,9 +14,9 @@ public class QuestionDTO {
     String options2;
     String options3;
     String options4;
-
     @JsonProperty(  access = JsonProperty.Access.WRITE_ONLY)
     String rightAnswer;
+    Integer rightOption;
     String category;
     String topic;
     String marks;
