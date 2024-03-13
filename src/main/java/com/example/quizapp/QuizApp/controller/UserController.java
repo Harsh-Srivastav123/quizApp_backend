@@ -27,10 +27,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
-
+@CrossOrigin()
 @RestController
 @RequestMapping("/user")
-@CrossOrigin()
+
 public class UserController {
     @Autowired
     UserService userService;
