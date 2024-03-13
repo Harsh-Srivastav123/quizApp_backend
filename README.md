@@ -146,7 +146,7 @@ Explain how to configure your application, including setting up the database and
 ### Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
 
-http://52.66.242.197:8080/swagger-ui/index.html
+http://13.126.195.3:8080/swagger-ui/index.html
 
  ```shell
    http://localhost:8080/swagger-ui.html
