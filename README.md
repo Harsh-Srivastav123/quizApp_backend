@@ -108,6 +108,7 @@ Before you begin, make sure you have the following installed:
 - Java Development Kit (JDK)
 - MySQL Database
 - Apache Maven
+- Vertex AI Configuartion
 - Cloudinary API Key and Secret (for profile image management)
 - You can also access from deployment server.http://13.126.195.3:8080/
 
@@ -142,13 +143,21 @@ Before you begin, make sure you have the following installed:
      config.put("api_secret","");
      config.put("sceure",true); 
      
+## Frontend
+The frontend for QuizMate is currently under development and is being contributed by the following developers:
 
+- React App:
+  - **Developers:** [Pragya Shrivastava](https://github.com/pr19gya), [Aastha Kesarwani](https://github.com/Aakesarwani)
+  - **Repository:** [https://github.com/Aakesarwani/QuizMate](#)
+- Flutter App:
+  - **Developers:** [Prashant Singh](https://github.com/prashantSj789), [Shubhang Shukla](https://github.com/Shubhang001)
+  - **Repository:** [https://github.com/prashantSj789/quizmate](#)
 
-### Usage
-Provide instructions on how to use and interact with your QuizApp. Include examples of common tasks or use cases.
+Please note that the frontend is still in progress, and more details will be added once it is ready for deployment.
+
 
 ### Configuration
-Explain how to configure your application, including setting up the database and Cloudinary credentials.
+Configure application, including setting up the database and Cloudinary credentials & vertex Ai using Google Cloud SDK shell.
 
 ### Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
