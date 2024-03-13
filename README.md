@@ -37,58 +37,65 @@ QuizApp is designed to provide the following key features:
 
 - **User Profiles:**
   - Create and manage user profiles.
+  - Profile is verified by email - verifaction.
   - Upload and manage profile images using Cloudinary.
+  - Get user status & rank.
 
-- **Quiz Taking:**
-  - Allow users to take quizzes.
-  - Store quiz responses in a MySQL database.
-  - Quiz Api are secured and only authenticated user can use this.
+  -**Session Management:**
+
+  - Create a session to conduct private quiz sessions.
+  - Invite other users to participate in the session.
+  - Each user is personally identified with a unique sessionUserId sent through email.
+  - A session report is created and saved for the user who created the session.
+
 
 ## Features
 
-QuizApp offers a wide range of features to meet your quiz and question management needs:
+QuizMate offers a wide range of features to meet your quiz and question management needs:
 
-### 1. Question Management
+### Question Management:
+- **View Questions:** Users can view a list of questions stored in the system, including the question text, options, and correct answer.
+- **Create Questions:** Authenticated users can create new questions, specifying the question text, options, correct answer, and optional details like difficulty level and topic.
+- **Update Questions:** Users with the necessary permissions can edit existing questions to modify any details or correct errors.
+- **Delete Questions:** Authorized users can delete questions that are no longer needed.
 
-Easily manage your questions:
-- View a comprehensive list of questions.
-- Create new questions with detailed descriptions.
-- Add list of questions.
-- Update existing questions to keep your content up-to-date.
-- Delete questions that are no longer relevant.
-- Generate  Balanced Question paper.
+### Topic Filtering:
+- **Filter by Topics:** Questions can be filtered based on predefined topics, allowing users to focus on specific areas of interest.
+- **Filter by Difficulty:** Questions can also be filtered based on their difficulty level, helping users find questions that match their skill level.
 
-### 2. Topic Filtering
+### User Profiles:
+- **Create and Manage Profiles:** Users can create their profiles, providing information such as name, email, and profile picture.
+- **Email Verification:** During account creation, users are required to verify their email address, adding an extra layer of security.
+- **Upload Profile Images:** Users can upload and manage their profile pictures using Cloudinary, enhancing their profile customization.
+- **Get User Status & Rank:** Users can view their status and rank based on their quiz performance, providing a sense of achievement and progress tracking.
 
-Efficiently find questions by topic:
-- Use the topic filter to narrow down questions by category.
-- Quickly access questions related to specific subjects.
-- Filter question according to their difficulty.
+### Session Management:
+- **Create Private Quiz Sessions:** Users can create private quiz sessions, setting a specific time frame for the session to be active.
+- **Invite Others:** Users can invite others to participate in the session by sharing session credentials through email.
+- **Unique SessionUserID:** Each user participating in the session is personally identified with a unique sessionUserID, ensuring accurate tracking and identification.
+- **Session Reports:** A session report is generated and saved for the user who created the session, providing detailed insights into the session's performance and outcomes.
 
-### 3. User Profiles
+### Google Vertex AI Integration:
+- **Hint Generation:** Google Vertex AI, specifically the Gemini Pro model, is used to generate hints for the questions. These hints can provide additional context or clues to help users answer questions correctly, enhancing the quiz experience.
 
-Enhance user engagement with profiles:
-- Create user profiles to personalize the quiz experience.
-- Upload profile images using Cloudinary for a unique touch.
-- Only authenticated can allow to use this.
+### Security:
+- **API Security:** All APIs, except for those related to questions, user creation, and user authentication, are secured through Spring Security.
+- **JWT Token:** Secured APIs require a valid JWT token to access, ensuring that only authenticated and authorized users can perform actions such as viewing questions, creating sessions, and managing profiles.
 
-### 4. Quiz Taking
-
-Enable users to test their knowledge:
-- Let users take quizzes based on available questions.
-- Store quiz responses in a MySQL database for analysis and review.
-- Keep track record of their progress & also get rank among all user.
 
 ## Technologies Used
 
 - Java
-- Spring Boot (MVC)
+- Spring Boot
 - Spring Data JPA (Hibernate)
+- Google Vertex AI (Gemini-pro model)
 - Spring Security
 - JWT authentication
 - MySQL Database
 - Cloudinary (For user profile image management)
-- AWS for Deloyment 
+- AWS for Deloyment
+- Github Actions for CI/CD pipeline
+- Docker for containerisation
 
 Add any other technologies or libraries you've used in your project.
 
@@ -102,7 +109,7 @@ Before you begin, make sure you have the following installed:
 - MySQL Database
 - Apache Maven
 - Cloudinary API Key and Secret (for profile image management)
-- You can also access from deployment server.http://52.66.242.197:8080/
+- You can also access from deployment server.http://13.126.195.3:8080/
 
        
 
