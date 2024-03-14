@@ -39,4 +39,23 @@ public class GeneralConfiguration {
         registrationBean.setOrder(GATEWAY_FILTER_ORDER);
         return registrationBean;
     }
+
+
+     @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(false);
+        config.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+        config.addAllowedHeader("*");
+        config.setExposedHeaders(Arrays.asList("Authorization"));
+        config.addAllowedMethod("OPTIONS");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("PATCH");
+        config.addAllowedMethod("DELETE");
+        source.registerCorsConfiguration("/", config);
+        return new CorsFilter(source);
+    }
 }
