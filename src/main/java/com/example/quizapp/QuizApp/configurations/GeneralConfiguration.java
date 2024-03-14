@@ -6,7 +6,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+
+import java.util.Arrays;
 
 
 @Configuration
@@ -16,7 +21,7 @@ public class GeneralConfiguration {
 
 
     private static final String GATEWAY_FILTER_URL_PATTERN = "/*";
-    private static final int GATEWAY_FILTER_ORDER=1;
+    private static final int GATEWAY_FILTER_ORDER = 1;
 
     @Bean
     public ModelMapper getModelMapper() {
@@ -41,7 +46,19 @@ public class GeneralConfiguration {
     }
 
 
-     @Bean
+//    @Bean
+//    public CorsFilter corsFilter() {
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowCredentials(false);
+//        config.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+//        config.addAllowedHeader("*");
+//        config.setExposedHeaders(Arrays.asList("x-cid", "x-tenant"));
+//        config.addAllowedMethod("OPTIONS");
+//        config.addAllowedMet
+//    }
+
+    @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
@@ -58,4 +75,5 @@ public class GeneralConfiguration {
         source.registerCorsConfiguration("/", config);
         return new CorsFilter(source);
     }
+
 }
