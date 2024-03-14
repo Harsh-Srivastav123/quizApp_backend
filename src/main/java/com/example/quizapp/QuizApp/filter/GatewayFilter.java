@@ -10,6 +10,8 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 
+import static java.rmi.server.LogStream.log;
+
 @Slf4j
 public class GatewayFilter extends OncePerRequestFilter {
 
@@ -29,9 +31,12 @@ public class GatewayFilter extends OncePerRequestFilter {
             HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
+            log.info(request.getHeader("Origin"));
+            log.info(request.getMethod());
+//            android.util.Log.i(TAG, "doFilterInternal: ");(request.getHeader("origin").toString());
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-            log.error("Spring Security Filter Chain Exception:", e);
+            GatewayFilter.log.error("Spring Security Filter Chain Exception:", e);
             resolver.resolveException(request, response, null, e);
         }
     }
