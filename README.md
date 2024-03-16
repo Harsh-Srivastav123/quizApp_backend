@@ -224,7 +224,7 @@ Your feedback is valuable to us! If you have any suggestions, comments, or ideas
 
 
 ## Important Badges:
-[![Build Status](https://github.com/yourusername/quizMate-backend/workflows/CI-CD/badge.svg)](https://github.com/yourusername/quizMate-backend/actions)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/quizMate-backend)](https://github.com/yourusername/quizMate-backend/issues)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/quizMate-backend)](https://github.com/yourusername/quizMate-backend/network)
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/quizMate-backend)](https://github.com/yourusername/quizMate-backend/stargazers)
+[![Build Status](https://github.com/Harsh-Srivastav123/quizMate-backend/workflows/CI-CD/badge.svg)](https://github.com/Harsh-Srivastav123/quizMate-backend/actions)
+[![GitHub issues](https://img.shields.io/github/issues/Harsh-Srivastav123/quizMate-backend)](https://github.com/Harsh-Srivastav123/quizMate-backend/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Harsh-Srivastav123/quizMate-backend)](https://github.com/Harsh-Srivastav123/quizMate-backend/network)
+[![GitHub stars](https://img.shields.io/github/stars/Harsh-Srivastav123/quizMate-backend)](https://github.com/Harsh-Srivastav123/quizMate-backend/stargazers)
