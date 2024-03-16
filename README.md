@@ -18,6 +18,9 @@ QuizMate is deployed on AWS EC2 using Docker containers, leveraging the scalabil
   - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
+- [Frontend](#Frontend)
+- [Deployment](#Deployment)
+- [KeyPoints](#Key-Points)
 - [Swagger API Documentation](#swagger-api-documentation)
 
 
@@ -199,14 +202,14 @@ Please note that the frontend is still in progress, and more details will be add
 
 6. **Mail Sender:** QuizMate uses a mail sender to send emails for verification and session details, enhancing the user experience and providing necessary information to users.
 
-### Postman Collection (Work in Progress):
+## Postman Collection (Work in Progress):
 A Postman collection is being developed to document and test the APIs of QuizMate. It will include endpoints for various functionalities such as user authentication, question management, quiz creation, and blog post interactions.
 
 Please check back soon for the completed Postman collection, which will provide a comprehensive overview of QuizMate's API capabilities and allow for easy testing and integration with the application.
 
 
 
-### Swagger API Documentation
+## Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
 
 http://65.2.175.178:8080/swagger-ui/index.html
