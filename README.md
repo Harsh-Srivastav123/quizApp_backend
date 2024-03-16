@@ -79,6 +79,7 @@ QuizMate offers a wide range of features to meet your quiz and question manageme
 - **Post Creation:** Users can create new posts to share their thoughts, ideas, and questions with the community. Posts can include text, images, and links, allowing for rich and engaging content.
 - **Like and Unlike:** Users can like posts to show their appreciation or agreement. They can also unlike posts if they change their mind or no longer wish to support a particular post.
 - **Commenting:** Users can comment on posts to share their thoughts, ask questions, or provide feedback. Comments can spark conversations and create a dialogue between users.
+
 These features enrich the user experience on QuizMate, providing a platform for meaningful interactions and discussions within the community.
 
 
