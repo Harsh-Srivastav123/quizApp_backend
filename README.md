@@ -208,13 +208,23 @@ A Postman collection is being developed to document and test the APIs of QuizMat
 Please check back soon for the completed Postman collection, which will provide a comprehensive overview of QuizMate's API capabilities and allow for easy testing and integration with the application.
 
 
-
 ## Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
 
 http://65.2.175.178:8080/swagger-ui/index.html
 
- ```shell
-   http://localhost:8080/swagger-ui.html
+
+## Conclusion:
+QuizMate, powered by Spring Boot, offers a comprehensive platform for managing quizzes, user profiles, and blog posts. With its user-centric design and robust features, QuizMate redefines the quiz experience, providing a seamless and engaging platform for users.
+
+By leveraging technologies such as AWS EC2, RDS, Docker, and GitHub Actions, QuizMate ensures scalability, reliability, and efficient deployment. The integration of Cloudinary for media management and Google Vertex AI for hint generation further enhances the user experience, making QuizMate a preferred choice for interactive and secure quizzing.
+
+## Feel Free to Give Feedback:
+Your feedback is valuable to us! If you have any suggestions, comments, or ideas for improvement, please feel free to share them. We are continuously working to enhance QuizMate and provide a better experience .
 
 
+## Important Badges:
+[![Build Status](https://github.com/yourusername/quizMate-backend/workflows/CI-CD/badge.svg)](https://github.com/yourusername/quizMate-backend/actions)
+[![GitHub issues](https://img.shields.io/github/issues/yourusername/quizMate-backend)](https://github.com/yourusername/quizMate-backend/issues)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/quizMate-backend)](https://github.com/yourusername/quizMate-backend/network)
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/quizMate-backend)](https://github.com/yourusername/quizMate-backend/stargazers)
