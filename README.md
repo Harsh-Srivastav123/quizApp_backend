@@ -25,7 +25,8 @@ QuizMate is deployed on AWS EC2 using Docker containers, leveraging the scalabil
 
 QuizApp is designed to provide the following key features:
 
-- **Question Management:**
+- **Question Management & Quiz Crea
+- tion**
   - View a list of questions.
   - Create new questions.
   - Update existing questions.
@@ -130,8 +131,9 @@ Before you begin, make sure you have the following installed:
    git clone https://github.com/yourusername/quizApp_backend.git
 2. Configure application.properties:
    ```shell
-     # configure according to your requirement 
-     server.port=8080
+     # configure according to your requirement
+        server.port=8080
+     spring.security.filter.order=3
      spring.datasource.url=url
      spring.datasource.username="username"
      spring.datasource.password="password"
@@ -143,12 +145,22 @@ Before you begin, make sure you have the following installed:
      spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
      spring.servlet.multipart.max-file-size=10MB
      spring.servlet.multipart.max-request-size=10MB
+     spring.mail.host=smtp.gmail.com
+     spring.mail.port=587
+     spring.mail.username=email
+     spring.mail.password=password
+     spring.mail.properties.mail.smtp.auth=true
+     spring.mail.properties.mail.smtp.starttls.enable=true
+
 3. Configure Cloudinary Configuration
    ```shell
      config.put("cloud_name","");
      config.put("api_key","");
      config.put("api_secret","");
-     config.put("sceure",true); 
+     config.put("sceure",true);
+
+ ## Configuration
+Configure application, including setting up the database and Cloudinary credentials & vertex Ai using Google Cloud SDK shell.  
      
 ## Frontend
 The frontend for QuizMate is currently under development and is being contributed by the following developers:
@@ -165,15 +177,34 @@ Please note that the frontend is still in progress, and more details will be add
 
 ## Deployment:
 - **AWS EC2 (Ubuntu OS):** QuizMate is deployed on AWS EC2 instances running Ubuntu OS. EC2 instances provide scalable compute capacity in the cloud, allowing QuizMate to handle varying loads efficiently.
+  
 - **AWS RDS (MySQL Database):** MySQL database hosted on AWS RDS is used for managing user profiles, quiz data, question data, and other application data. RDS provides a scalable and managed database solution, ensuring data reliability and performance.
+  
 - **Cloudinary:** QuizMate uses Cloudinary for storing media files, such as user profile images. Cloudinary provides a cloud-based media management platform, enabling efficient storage and delivery of media files.
+  
 - **Docker:** QuizMate is containerized using Docker, allowing for easy deployment and scalability. Docker containers encapsulate the application and its dependencies, ensuring consistent and reliable deployment across different environments.
+  
 - **GitHub Actions:** QuizMate uses GitHub Actions for creating a CI/CD pipeline. GitHub Actions automate the build, test, and deployment processes, ensuring rapid and reliable delivery of updates to the application.
 
+## Key Points:
+1. **Custom Gateway Filter:** QuizMate uses a custom filter before the Spring Security filter to handle specific requirements or preprocessing of requests.
+
+2. **Global CORS Configuration:** CORS (Cross-Origin Resource Sharing) is configured globally to allow requests from any origin. Preflight requests and AJAX calls are also properly configured with Spring Security.
+
+3. **Mapping Types:** Various types of mappings are used throughout the project, including one-to-one, one-to-many, and many-to-many mappings, to establish relationships between entities.
+
+4. **Global Exception Handling:** QuizMate implements a global exception handler along with a `@RestControllerAdvice` to effectively handle exceptions and provide proper information about errors to clients.
+
+5. **Cloudinary SDK:** The Cloudinary SDK is used to handle media content, such as user profile images, ensuring efficient storage and delivery of media files.
+
+6. **Mail Sender:** QuizMate uses a mail sender to send emails for verification and session details, enhancing the user experience and providing necessary information to users.
+
+### Postman Collection (Work in Progress):
+A Postman collection is being developed to document and test the APIs of QuizMate. It will include endpoints for various functionalities such as user authentication, question management, quiz creation, and blog post interactions.
+
+Please check back soon for the completed Postman collection, which will provide a comprehensive overview of QuizMate's API capabilities and allow for easy testing and integration with the application.
 
 
-### Configuration
-Configure application, including setting up the database and Cloudinary credentials & vertex Ai using Google Cloud SDK shell.
 
 ### Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
@@ -182,3 +213,5 @@ http://65.2.175.178:8080/swagger-ui/index.html
 
  ```shell
    http://localhost:8080/swagger-ui.html
+
+
