@@ -81,6 +81,11 @@ public class UserService {
 //                  System.out.println(response.getRightAnswer());
 //                  System.out.println(questionResponse.getRightAnswer());
                     //questionResponse.getRightAnswer().equals(response.getRightAnswer())
+
+                    //only during development process
+                    if(questionResponse.getRightOption()==null) continue;
+
+
                     if (questionResponse.getRightOption().intValue()==response.getRightOption().intValue()) {
                         resultResponse.setResult(true);
 //                        System.out.println("rightAnswer");
