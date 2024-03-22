@@ -122,7 +122,7 @@ public class SessionService {
 //            return sessionDAO.findAll().stream().map(object -> modelMapper.map(object, SessionDTO.class)).collect(Collectors.toList());
 //        }
         //Collections.singletonList(sessionDAO.findById(Integer.parseInt(sessionId)).get());
-        if (sessionDAO.existsById(sessionId)) {
+        if (!sessionDAO.existsById(sessionId)) {
             //throw exception
             throw new CustomException("Unable to find sessionDetails check the sessionId carefully");
         }
