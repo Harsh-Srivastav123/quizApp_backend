@@ -39,9 +39,10 @@ public class SessionController {
         return new ResponseEntity<>(new Message(null,"Unable to Create Session"),HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("")
-    public List<SessionDTO> sessionList(@RequestParam(value = "sessionId",defaultValue = "all",required = false) String sessionId){
-        return sessionService.getSessionDetails(sessionId);
+    @GetMapping("/session/{sessionId}")
+    public ResponseEntity<SessionDTO> getSessionDetails(@PathVariable Integer sessionId)
+    {
+      return new ResponseEntity<>(sessionService.getSessionDetails(sessionId),HttpStatus.OK);
     }
 
     @PostMapping("/sessionResponse")

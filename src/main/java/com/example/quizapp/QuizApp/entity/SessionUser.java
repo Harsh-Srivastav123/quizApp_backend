@@ -24,6 +24,6 @@ public class SessionUser implements Comparable<SessionUser> {
 
     @Override
     public int compareTo(SessionUser sessionUser){
-        return this.getMarks()- sessionUser.getMarks();
+        return sessionUser.getMarks()-this.getMarks();
     }
 }

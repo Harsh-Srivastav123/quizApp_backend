@@ -114,18 +114,36 @@ public class SessionService {
         return new Date(calendar.getTime().getTime());
     }
 
-    public List<SessionDTO> getSessionDetails(String sessionId) {
-        log.info(sessionId);
-        if (sessionId.equals("all")) {
-            //sessionDAO.findAll();
-            return sessionDAO.findAll().stream().map(object -> modelMapper.map(object, SessionDTO.class)).collect(Collectors.toList());
-        }
+    public SessionDTO getSessionDetails(Integer sessionId) {
+        log.info(sessionId.toString());
+//        log.info(sessionId);
+//        if (sessionId.equals("all")) {
+//            //sessionDAO.findAll();
+//            return sessionDAO.findAll().stream().map(object -> modelMapper.map(object, SessionDTO.class)).collect(Collectors.toList());
+//        }
         //Collections.singletonList(sessionDAO.findById(Integer.parseInt(sessionId)).get());
-        if (sessionDAO.findById(Integer.parseInt(sessionId)).isEmpty()) {
+        if (sessionDAO.existsById(sessionId)) {
             //throw exception
             throw new CustomException("Unable to find sessionDetails check the sessionId carefully");
         }
-        return Collections.singletonList(modelMapper.map(sessionDAO.findById(Integer.parseInt(sessionId)).get(), SessionDTO.class));
+
+        //rank changes handle here
+//        return Collections.singletonList(modelMapper.map(sessionDAO.findById(Integer.parseInt(sessionId)).get(), SessionDTO.class));
+
+        Session session=sessionDAO.findById(sessionId).get();
+        List<SessionUser> sessionUserListAttempted=new ArrayList<>();
+        List<SessionUser> sessionUserListNonAttempted=new ArrayList<>();
+        for(SessionUser sessionUser:session.getSessionUserList()){
+            if(sessionUser.isCompleted()){
+                sessionUserListAttempted.add(sessionUser);
+            }
+            else {
+                sessionUserListNonAttempted.add(sessionUser);
+            }
+        }
+        sessionUserListNonAttempted.addAll(sessionUserListAttempted);
+        session.setSessionUserList(sessionUserListNonAttempted);
+        return modelMapper.map(session,SessionDTO.class);
     }
 
     public SessionResult submitResponse(SessionResponse sessionResponse) {
@@ -213,8 +231,6 @@ public class SessionService {
             if(sessionUser.isCompleted()){
                 sessionUser.setSessionRank(rank++);
             }
-
-            sessionUserDAO.save(sessionUser);
         }
         session.setSessionUserList(sessionUserList);
         sessionDAO.save(session);
