@@ -72,6 +72,11 @@ public class SessionService {
             throw new CustomException("session details is missing");
             //throw exception
         }
+        for(SessionUser user:sessionDTO.getSessionUserList()){
+            if(!userDAO.existsById(user.getUserId())){
+               throw new CustomException("User not found check the user id carefully!!") ;
+            }
+        }
         Session session = modelMapper.map(sessionDTO, Session.class);
         session.setDateAndTime(currentTimeStamp.calculateDateTime());
         session.setStartTimeStamp(calculateExpirationTime(session.getDelayDuration()));
