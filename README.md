@@ -110,7 +110,7 @@ Before you begin, make sure you have the following installed:
 - Apache Maven
 - Vertex AI Configuartion
 - Cloudinary API Key and Secret (for profile image management)
-- You can also access from deployment server.http://65.2.175.178:8080/
+- You can also access from deployment server.http://43.205.68.79:8080/
 
 
 
@@ -171,7 +171,7 @@ Configure application, including setting up the database and Cloudinary credenti
 ### Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
 
-http://65.2.175.178:8080/swagger-ui/index.html
+http://43.205.68.79:8080/swagger-ui/index.html
 
  ```shell
    http://localhost:8080/swagger-ui.html
