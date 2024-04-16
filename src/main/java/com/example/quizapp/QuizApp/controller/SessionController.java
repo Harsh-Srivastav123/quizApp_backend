@@ -40,7 +40,7 @@ public class SessionController {
     }
 
     @GetMapping("/session/{sessionId}")
-    public ResponseEntity<SessionDTO> getSessionDetails(@PathVariable Integer sessionId)
+    public ResponseEntity<Object> getSessionDetails(@PathVariable Integer sessionId)
     {
       return new ResponseEntity<>(sessionService.getSessionDetails(sessionId),HttpStatus.OK);
     }

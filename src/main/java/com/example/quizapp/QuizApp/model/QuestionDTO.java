@@ -1,5 +1,6 @@
 package com.example.quizapp.QuizApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +17,7 @@ public class QuestionDTO {
     String options4;
     @JsonProperty(  access = JsonProperty.Access.WRITE_ONLY)
     String rightAnswer;
+    @JsonIgnore
     Integer rightOption;
     String category;
     String topic;
