@@ -75,7 +75,7 @@ QuizMate offers a wide range of features to meet your quiz and question manageme
 - **Invite Others:** Users can invite others to participate in the session by sharing session credentials through email.
 - **Unique SessionUserID:** Each user participating in the session is personally identified with a unique sessionUserID, ensuring accurate tracking and identification.
 - **Session Reports:** A session report is generated and saved for the user who created the session, providing detailed insights into the session's performance and outcomes.
-
+  
 ### Blog Features:
 - **Post Creation:** Users can create new posts to share their thoughts, ideas, and questions with the community. Posts can include text, images, and links, allowing for rich and engaging content.
 - **Like and Unlike:** Users can like posts to show their appreciation or agreement. They can also unlike posts if they change their mind or no longer wish to support a particular post.
@@ -101,9 +101,9 @@ These features enrich the user experience on QuizMate, providing a platform for 
 - Spring Security
 - JWT authentication
 - MySQL Database
-- Cloudinary
+- Cloudinary 
 - AWS for Deloyment
-- Github Actions
+- Github Actions 
 - Docker
 
 Add any other technologies or libraries you've used in your project.
@@ -119,9 +119,9 @@ Before you begin, make sure you have the following installed:
 - Apache Maven
 - Vertex AI Configuartion
 - Cloudinary API Key and Secret (for profile image management)
-- You can also access from deployment server.http://65.2.175.178:8080/
+- You can also access from deployment server.http://43.205.68.79:8080/
 
-
+       
 
 ### Installation
 
@@ -159,9 +159,9 @@ Before you begin, make sure you have the following installed:
      config.put("api_secret","");
      config.put("sceure",true);
 
-## Configuration
-Configure application, including setting up the database and Cloudinary credentials & vertex Ai using Google Cloud SDK shell.
-
+ ## Configuration
+Configure application, including setting up the database and Cloudinary credentials & vertex Ai using Google Cloud SDK shell.  
+     
 ## Frontend
 The frontend for QuizMate is currently under development and is being contributed by the following developers:
 
@@ -177,13 +177,13 @@ Please note that the frontend is still in progress, and more details will be add
 
 ## Deployment:
 - **AWS EC2 (Ubuntu OS):** QuizMate is deployed on AWS EC2 instances running Ubuntu OS. EC2 instances provide scalable compute capacity in the cloud, allowing QuizMate to handle varying loads efficiently.
-
+  
 - **AWS RDS (MySQL Database):** MySQL database hosted on AWS RDS is used for managing user profiles, quiz data, question data, and other application data. RDS provides a scalable and managed database solution, ensuring data reliability and performance.
-
+  
 - **Cloudinary:** QuizMate uses Cloudinary for storing media files, such as user profile images. Cloudinary provides a cloud-based media management platform, enabling efficient storage and delivery of media files.
-
+  
 - **Docker:** QuizMate is containerized using Docker, allowing for easy deployment and scalability. Docker containers encapsulate the application and its dependencies, ensuring consistent and reliable deployment across different environments.
-
+  
 - **GitHub Actions:** QuizMate uses GitHub Actions for creating a CI/CD pipeline. GitHub Actions automate the build, test, and deployment processes, ensuring rapid and reliable delivery of updates to the application.
 
 ## Key Points:
@@ -209,7 +209,7 @@ Please check back soon for the completed Postman collection, which will provide 
 ### Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
 
-http://65.2.175.178:8080/swagger-ui/index.html
+http://43.205.68.79:8080/swagger-ui/index.html
 
  ```shell
    http://localhost:8080/swagger-ui.html
