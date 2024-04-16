@@ -17,6 +17,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.Temporal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -46,6 +50,7 @@ public class SessionService {
     @Autowired
     ModelMapper modelMapper;
 
+    public record sessionMessage(String message, Long timeLeft){}
 
     public SessionDTO createSession(SessionDTO sessionDTO) {
         List<QuestionDTO> updatedQuestionList=new ArrayList<>();
@@ -119,7 +124,7 @@ public class SessionService {
         return new Date(calendar.getTime().getTime());
     }
 
-    public SessionDTO getSessionDetails(Integer sessionId) {
+    public Object getSessionDetails(Integer sessionId) {
         log.info(sessionId.toString());
 //        log.info(sessionId);
 //        if (sessionId.equals("all")) {
@@ -129,13 +134,24 @@ public class SessionService {
         //Collections.singletonList(sessionDAO.findById(Integer.parseInt(sessionId)).get());
         if (!sessionDAO.existsById(sessionId)) {
             //throw exception
-            throw new CustomException("Unable to find sessionDetails check the sessionId carefully");
+            throw new CustomException("Session id not exist check the carefully");
+        }
+
+        Session session=sessionDAO.findById(sessionId).get();
+
+        Date currTimeStamp=new Date();
+        if(currTimeStamp.before(session.getStartTimeStamp())){
+//            log.info("reach here");
+           // Duration duration=Duration.between((Temporal) session.getStartTimeStamp(), (Temporal) currTimeStamp);
+            LocalDateTime dateTime1 = session.getStartTimeStamp().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            LocalDateTime dateTime2 = currTimeStamp.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            return new sessionMessage("Session has not started yet !!",Duration.between(dateTime2,dateTime1).toMinutes() );
         }
 
         //rank changes handle here
 //        return Collections.singletonList(modelMapper.map(sessionDAO.findById(Integer.parseInt(sessionId)).get(), SessionDTO.class));
 
-        Session session=sessionDAO.findById(sessionId).get();
+
         List<SessionUser> sessionUserListAttempted=new ArrayList<>();
         List<SessionUser> sessionUserListNonAttempted=new ArrayList<>();
         for(SessionUser sessionUser:session.getSessionUserList()){

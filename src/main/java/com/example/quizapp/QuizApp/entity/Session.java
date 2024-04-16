@@ -18,10 +18,10 @@ public class Session {
 
     String dateAndTime ;
 
-    @JsonIgnore
+//    @JsonIgnore
     Date startTimeStamp;
 
-    @JsonIgnore
+//    @JsonIgnore
     Date expiryTimeStamp;
 
     Integer delayDuration;
