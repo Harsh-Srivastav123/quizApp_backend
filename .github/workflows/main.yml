@@ -23,8 +23,8 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Delete old container 
-      run: sudo docker container rm quizmate-container|| true
+    - name: Delete old container-1 
+      run: sudo docker container rm quizmate-container-1|| true
     - name: Delete old image 
       run:  sudo docker image rm quizmate || true
 
@@ -35,8 +35,15 @@ jobs:
     - name: Run docker image for container-1
       run: sudo docker run -d -p 8080:8080 --name quizmate-container-1 quizmate  sleep infinity| echo "success"
 
+    - name: Check if container-1 is running
+      id: check-container-1
+      run: echo ::set-output name=running::$(sudo docker inspect -f '{{.State.Running}}' quizmate-container-1)
+      
     - name: stop old container-2
       run: sudo docker container stop quizmate-container-2 || true
+      
+    - name: Delete old container-2 
+      run: sudo docker container rm quizmate-container-2|| true
       
     - name: Run docker image for container-2
       run: sudo docker run -d -p 9090:8080 --name quizmate-container-2 quizmate  sleep infinity| echo "success"
