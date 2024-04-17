@@ -19,7 +19,7 @@ jobs:
         distribution: 'adopt'
     
     - name: stop old container
-      run: sudo docker container stop quizmate-container || true
+      run: sudo docker container stop quizmate-container-1 || true
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
@@ -32,5 +32,11 @@ jobs:
       run: sudo docker build -t quizmate .
       
    
-    - name: Run docker image
-      run: sudo docker run -d -p 8080:8080 --name quizmate-container quizmate  sleep infinity| echo "success"
+    - name: Run docker image for container-1
+      run: sudo docker run -d -p 8080:8080 --name quizmate-container-1 quizmate  sleep infinity| echo "success"
+
+    - name: stop old container-2
+      run: sudo docker container stop quizmate-container-2 || true
+      
+    - name: Run docker image for container-2
+      run: sudo docker run -d -p 9090:8080 --name quizmate-container-1 quizmate  sleep infinity| echo "success"
