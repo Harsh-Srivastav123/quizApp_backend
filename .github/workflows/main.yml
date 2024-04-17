@@ -39,4 +39,4 @@ jobs:
       run: sudo docker container stop quizmate-container-2 || true
       
     - name: Run docker image for container-2
-      run: sudo docker run -d -p 9090:8080 --name quizmate-container-1 quizmate  sleep infinity| echo "success"
+      run: sudo docker run -d -p 9090:8080 --name quizmate-container-2 quizmate  sleep infinity| echo "success"
