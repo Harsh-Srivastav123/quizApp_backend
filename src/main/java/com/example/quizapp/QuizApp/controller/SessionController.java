@@ -42,7 +42,11 @@ public class SessionController {
     @GetMapping("/session/{sessionId}")
     public ResponseEntity<Object> getSessionDetails(@PathVariable Integer sessionId)
     {
-      return new ResponseEntity<>(sessionService.getSessionDetails(sessionId),HttpStatus.OK);
+        Object obj=sessionService.getSessionDetails(sessionId);
+        if(obj.getClass()==SessionDTO.class){
+            return new ResponseEntity<>(obj,HttpStatus.OK);
+        }
+     return new ResponseEntity<>(obj,HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/sessionResponse")
