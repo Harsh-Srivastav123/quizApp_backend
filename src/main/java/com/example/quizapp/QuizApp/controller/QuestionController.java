@@ -7,6 +7,7 @@ import com.example.quizapp.QuizApp.model.CategoryData;
 import com.example.quizapp.QuizApp.model.CustomQuiz;
 import com.example.quizapp.QuizApp.model.QuestionDTO;
 import com.example.quizapp.QuizApp.model.QuestionList;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/question")
 
+@Slf4j
 public class QuestionController {
     @Autowired
     QuestionServices questionServices;
@@ -139,9 +141,21 @@ public class QuestionController {
         return new ResponseEntity<>("Unable to fetch",HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @GetMapping("/test")
-    public boolean test(){
-        return questionServices.testing();
+//    @GetMapping("/test")
+//    public boolean test(){
+//        return questionServices.testing();
+//    }
+
+    @GetMapping("/test1")
+    public ResponseEntity<String> test1(){
+        log.info("request reach to server");
+        return new ResponseEntity<>("Server test1", HttpStatus.OK);
+    }
+
+    @GetMapping("/test2")
+    public ResponseEntity<String> test2(){
+        log.info("request reach to server");
+        return new ResponseEntity<>("Server test2", HttpStatus.OK);
     }
 
 }
