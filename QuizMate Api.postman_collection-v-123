@@ -1,0 +1,1045 @@
+{
+	"info": {
+		"_postman_id": "b165dc0c-d189-4fe1-a319-4f9012725f0a",
+		"name": "QuizMate Api",
+		"description": "# 📄 Get started here\n\nThis template contains a boilerplate for documentation that you can quickly customize and reuse.\n\n## 🔖 How to use this template\n\n- Replace the content given brackets (()) with your API's details.\n- Tips are formatted in `codespan` - feel free to read and remove them.\n    \n\n---\n\n`Start with a brief overview of what your API offers.`\n\nThe ((product name)) provides many API products, tools, and resources that enable you to ((add product value here)).\n\n`You can also list the APIs you offer, link to the relevant pages, or do both in this section.`\n\n## **Getting started guide**\n\n`List the steps or points required to start using your APIs. Make sure to cover everything required to reach success with your API as quickly as possible.`\n\nTo start using the ((add APIs here)), you need to -\n\n`The points given below are from The Postman API's documentation. You can reference it to write your own getting started guide.`\n\n- You must use a valid API Key to send requests to the API endpoints. You can get your API key from Postman's [integrations dashboard](https://go.postman.co/settings/me/api-keys).\n- The API has [rate and usage limits](https://postman.postman.co/workspace/Collection-Templates~6311738d-2e70-441f-ae12-78caf078c5b7/collection/22517504-e9c28f47-1253-44af-a2f3-20dce4da1f18?ctx=documentation#rate-and-usage-limits).\n- The API only responds to HTTPS-secured communications. Any requests sent via HTTP return an HTTP 301 redirect to the corresponding HTTPS resources.\n- The API returns request responses in JSON format. When an API request returns an error, it is sent in the JSON response as an error key.\n    \n\n## Authentication\n\n`Add details on the authorization keys/tokens required, steps that cover how to get them, and the relevant error codes.`\n\nThe ((product name)) API uses ((add your API's authorization type)) for authentication.\n\n`The details given below are from the Postman API's documentation. You can reference it to write your own authentication section.`\n\nPostman uses API keys for authentication. You can generate a Postman API key in the [API keys](https://postman.postman.co/settings/me/api-keys) section of your Postman account settings.\n\nYou must include an API key in each request to the Postman API with the X-Api-Key request header.\n\n### Authentication error response\n\nIf an API key is missing, malformed, or invalid, you will receive an HTTP 401 Unauthorized response code.\n\n## Rate and usage limits\n\n`Use this section to cover your APIs' terms of use. Include API limits, constraints, and relevant error codes, so consumers understand the permitted API usage and practices.`\n\n`The example given below is from The Postman API's documentation. Use it as a reference to write your APIs' terms of use.`\n\nAPI access rate limits apply at a per-API key basis in unit time. The limit is 300 requests per minute. Also, depending on your plan, you may have usage limits. If you exceed either limit, your request will return an HTTP 429 Too Many Requests status code.\n\nEach API response returns the following set of headers to help you identify your use status:\n\n| Header | Description |\n| --- | --- |\n| `X-RateLimit-Limit` | The maximum number of requests that the consumer is permitted to make per minute. |\n| `X-RateLimit-Remaining` | The number of requests remaining in the current rate limit window. |\n| `X-RateLimit-Reset` | The time at which the current rate limit window resets in UTC epoch seconds. |\n\n### 503 response\n\nAn HTTP `503` response from our servers indicates there is an unexpected spike in API access traffic. The server is usually operational within the next five minutes. If the outage persists or you receive any other form of an HTTP `5XX` error, [contact support](https://support.postman.com/hc/en-us/requests/new/).\n\n### **Need some help?**\n\n`Add links that customers can refer to whenever they need help.`\n\nIn case you have questions, go through our tutorials ((link to your video or help documentation here)). Or visit our FAQ page ((link to the relevant page)).\n\nOr you can check out our community forum, there’s a good chance our community has an answer for you. Visit our developer forum ((link to developer forum)) to review topics, ask questions, and learn from others.\n\n`You can also document or add links to libraries, code examples, and other resources needed to make a request.`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25729514",
+		"_collection_link": "https://dark-spaceship-146685.postman.co/workspace/Team-Workspace~7a0af077-03c7-4a4c-8bf1-a4d549ee613d/collection/25729514-b165dc0c-d189-4fe1-a319-4f9012725f0a?action=share&source=collection_link&creator=25729514"
+	},
+	"item": [
+		{
+			"name": "Local Testing",
+			"item": [
+				{
+					"name": "Question",
+					"item": [
+						{
+							"name": "categoryInfoSpecific",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "questionParam",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "questionPaper",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addQuestion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addQuestionList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateQuestion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteQuestion",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "categoryInfo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8000/question/aiResponse/21",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJIYXJzaC1SYWotU3JpdmFzdGF2LXByb2QiLCJpYXQiOjE3MDg2MTA0ODAsImV4cCI6MTcwODYxMTM4MH0.80ltlYA5cZzlqu9rO6wWSTojRx8FMj90r47VkV4bsTMBuxBjKkVmzttjkqGgkaO1Uw1Y4M0sW46yziYgoZvHDA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"responseList\":[\r\n        {\r\n            \"id\":21,\r\n            \"rightAnswer\":\"Through method overloading and overriding\"\r\n        },\r\n        {\r\n            \"id\":22,\r\n            \"rightAnswer\":\"It refers to the current instance of the object\"\r\n        },\r\n        {\r\n            \"id\":23,\r\n            \"rightAnswer\":\"It is the starting point of every Java program\"\r\n        }\r\n\r\n    ],\r\n    \"totalQuestion\":5,\r\n    \"category\":\"Java\"\r\n   \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/question/aiResponse/21",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"question",
+										"aiResponse",
+										"21"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "createUser",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AuthenticateUser",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\":\"Harsh-Raj-Srivastav-prod\",\r\n    \"email\":\"srivastavharsh2003@gmail.com\",\r\n    \"password\":\"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/user/auth",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "SubmitResponse",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJIYXJzaC1SYWotU3JpdmFzdGF2LXByb2QiLCJpYXQiOjE3MDgyMzUxNTAsImV4cCI6MTcwODIzNjA1MH0.DuR-ycqH5mEon0T-TigVOBvRpzE8pld7ZlyOIFX68pbfGvvgc-glVyBC9M9EAg2azxixaSAWWM75sect1DpJSw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"responseList\":[\r\n        {\r\n            \"id\":21,\r\n            \"rightAnswer\":\"Through method overloading and overriding\"\r\n        },\r\n        {\r\n            \"id\":22,\r\n            \"rightAnswer\":\"It refers to the current instance of the object\"\r\n        },\r\n        {\r\n            \"id\":23,\r\n            \"rightAnswer\":\"It is the starting point of every Java program\"\r\n        }\r\n\r\n    ],\r\n    \"totalQuestion\":5,\r\n    \"category\":\"Java\"\r\n   \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/user/response",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"user",
+										"response"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllUser",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetUserWithId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUser",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Session",
+					"item": [
+						{
+							"name": "createSession",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sessionResponse",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getSessionWithId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteSession",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Production-Testing",
+			"item": [
+				{
+					"name": "Question",
+					"item": [
+						{
+							"name": "questionParam-1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://43.205.68.79:8080/question?pageNo=0&pageSize=10&category=java&id=20&difficulty=easy",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"question"
+									],
+									"query": [
+										{
+											"key": "pageNo",
+											"value": "0"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										},
+										{
+											"key": "category",
+											"value": "java"
+										},
+										{
+											"key": "id",
+											"value": "20"
+										},
+										{
+											"key": "difficulty",
+											"value": "easy"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "categoryInfoSpecific-1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://43.205.68.79:8080/question/category/java",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"question",
+										"category",
+										"java"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "questionPaper-1",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://43.205.68.79:8080/question/questionPaper",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"question",
+										"questionPaper"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addQuestion-1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"question\": \"sdncdxssssncdsvcsdov\",\r\n    \"options1\": \"kcmdkmckd\",\r\n    \"options2\": \"cdmc\",\r\n    \"options3\": \"vmkdnmffvkdmvd\",\r\n    \"options4\": \"dnfvkdnvdnivnd\",\r\n    \"rightAnswer\": \"cdmc\",\r\n    \"category\": \"Java\",\r\n    \"topic\": \"Java\",\r\n    \"marks\":5,\r\n    \"difficulty\":\"easy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/question/add",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"question",
+										"add"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "addQuestionList-1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"question\": \"add in prod\",\r\n        \"options1\": \"kcmdkmckd\",\r\n        \"options2\": \"cdmc\",\r\n        \"options3\": \"vmkdnmffvkdmvd\",\r\n        \"options4\": \"dnfvkdnvdnivnd\",\r\n        \"rightAnswer\": \"jjfdnvdm\",\r\n        \"category\": \"Java\",\r\n        \"topic\": \"Java\",\r\n        \"marks\": 10,\r\n        \"difficulty\": \"easy\"\r\n    },\r\n    {\r\n       \r\n        \"question\": \"Why java is not fully object oriented programming language.?\",\r\n        \"options1\": \"kcmdkmckd\",\r\n        \"options2\": \"cdmc\",\r\n        \"options3\": \"vmkdnmffvkdmvd\",\r\n        \"options4\": \"dnfvkdnvdnivnd\",\r\n        \"rightAnswer\": \"jjfdnvdm\",\r\n        \"category\": \"Java\",\r\n        \"topic\": \"Java\",\r\n        \"marks\": 10,\r\n        \"difficulty\": \"easy\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/question/addList",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"question",
+										"addList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateQuestion-1",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 403,\r\n    \"question\": \"add in production\",\r\n    \"options1\": \"kcmdkmckd\",\r\n    \"options2\": \"cdmc\",\r\n    \"options3\": \"vmkdnmffvkdmvd\",\r\n    \"options4\": \"dnfvkdnvdnivnd\",\r\n    \"rightAnswer\": \"jjfdnvdm\",\r\n    \"category\": \"Java\",\r\n    \"topic\": \"Java\",\r\n    \"marks\": 10,\r\n    \"difficulty\": \"easy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/question/update",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"question",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteQuestion-1",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 403,\r\n    \"question\": \"add in production\",\r\n    \"options1\": \"kcmdkmckd\",\r\n    \"options2\": \"cdmc\",\r\n    \"options3\": \"vmkdnmffvkdmvd\",\r\n    \"options4\": \"dnfvkdnvdnivnd\",\r\n    \"rightAnswer\": \"jjfdnvdm\",\r\n    \"category\": \"Java\",\r\n    \"topic\": \"Java\",\r\n    \"marks\": 10,\r\n    \"difficulty\": \"easy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/question/delete/403",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"question",
+										"delete",
+										"403"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "categoryInfo",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://43.205.68.79:8080/question/category/all",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"question",
+										"category",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "customQuiz",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"category\":\"java\",\r\n        \"easy\":2,\r\n        \"medium\":3\r\n    },\r\n    {\r\n        \"category\":\"javascript\",\r\n        \"easy\":2,\r\n        \"medium\":3,\r\n        \"hard\":2\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/question/customQuiz",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"question",
+										"customQuiz"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "createUser-1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "user",
+											"value": "{\n    \"userName\":\"harsh-123450\",\n    \"email\":\"srivastavharsh2003@gmail.com\",\n    \"password\":\"123456789\"\n}",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "1.jpg",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/user/createUser",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"createUser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "userAuth-1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n    \"userName\":\"harsh-123450\",\r\n    \"email\":\"srivastavharsh2003@gmail.com\",\r\n    \"password\":\"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/user/auth",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "submitResponse-1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYXJzaC0xMjM0NTY3ODkiLCJpYXQiOjE3MTA1OTY5ODcsImV4cCI6MTcxMDU5ODE4N30.wbu6_oRp6qhCEjxue3GsLdVqeCKgT9mLvE5e7ZRyreXqY8A1cYgRL_fV3JYUEkXTQJwvJM1xW2fQFD23WXyGfQ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"responseList\":[\r\n        {\r\n            \"id\":21,\r\n            \"rightOption\":2\r\n            // \"rightAnswer\":\"Through method overloading and overriding\"\r\n        },\r\n        {\r\n            \"id\":22,\r\n            \"rightOption\":1\r\n        },\r\n        {\r\n            \"id\":553,\r\n            \"rightOption\":3\r\n        }\r\n\r\n    ],\r\n    \"totalQuestion\":5,\r\n    \"maximumMarks\":50,\r\n    \"category\":\"Java\"\r\n   \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/user/response",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"response"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "submitResponse-1-2",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYXJzaC0xMjM0NTY3ODkiLCJpYXQiOjE3MTAyNzY1OTAsImV4cCI6MTcxMDI3Nzc5MH0.6_6FR7ER_QFC8fSop2P_Zy0iunYeovGVOgNBf1RzeCV-DOoJ8f8Ico3gCCle8trYrVfVqahGVg3p-Z0bgSEqWw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"responseList\":[\r\n        {\r\n            \"id\":21,\r\n            \"rightOption\":2\r\n            // \"rightAnswer\":\"Through method overloading and overriding\"\r\n        },\r\n        {\r\n            \"id\":22,\r\n            \"rightOption\":1\r\n        },\r\n        {\r\n            \"id\":23,\r\n            \"rightOption\":3\r\n        }\r\n\r\n    ],\r\n    \"totalQuestion\":5,\r\n    \"maximumMarks\":50,\r\n    \"category\":\"Java\"\r\n   \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/user/response",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"response"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAllUser-1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYXJzaC0xMjM0NTAiLCJpYXQiOjE3MTExMTI0ODIsImV4cCI6MTcxMTExMzY4Mn0.vlZxSN6PZqH4pwM9QwyCj70pCx2IFbx7kHNuD2_BIMM0nYYBqJ4O2ZNdhhriXbZf-w7wJeZ3FdDgauqjH_tRWA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"responseList\":[\r\n        {\r\n            \"id\":21,\r\n            \"rightAnswer\":\"Through method overloading and overriding\"\r\n        },\r\n        {\r\n            \"id\":22,\r\n            \"rightAnswer\":\"It refers to the current instance of the object\"\r\n        },\r\n        {\r\n            \"id\":23,\r\n            \"rightAnswer\":\"It is the starting point of every Java programdgfsgs\"\r\n        }\r\n\r\n    ],\r\n    \"totalQuestion\":5,\r\n    \"category\":\"Java\"\r\n   \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/user/user",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUserWithId-1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJha2FzaCIsImlhdCI6MTcwOTUzNDczNywiZXhwIjoxNzA5NTM1OTM3fQ.5Q0RILJYfVUaEMi7KkuNwIRI-36rK6JxpZMJYtfEjqDiUi_zwLLNiJx6gRhmJnlTq5UaJhWBYmpftMpGglciDA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"responseList\":[\r\n        {\r\n            \"id\":21,\r\n            \"rightAnswer\":\"Through method overloading and overriding\"\r\n        },\r\n        {\r\n            \"id\":22,\r\n            \"rightAnswer\":\"It refers to the current instance of the object\"\r\n        },\r\n        {\r\n            \"id\":23,\r\n            \"rightAnswer\":\"It is the starting point of every Java programdgfsgs\"\r\n        }\r\n\r\n    ],\r\n    \"totalQuestion\":5,\r\n    \"category\":\"Java\"\r\n   \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/user/user/603",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"user",
+										"603"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteUser-1",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJIYXJzaC1SYWotU3JpdmFzdGF2LXByb2QiLCJpYXQiOjE3MDY4OTU2NjgsImV4cCI6MTcwNjg5NTk2OH0.d7qVhwsiWQfyzV9qkK_d-3u5_qeAZDVBgZ2lhQlLDkH1RmE7YfYDaxlG7EmalAoeRCffXy6GM39kziXwZjgksw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"responseList\":[\r\n        {\r\n            \"id\":21,\r\n            \"rightAnswer\":\"Through method overloading and overriding\"\r\n        },\r\n        {\r\n            \"id\":22,\r\n            \"rightAnswer\":\"It refers to the current instance of the object\"\r\n        },\r\n        {\r\n            \"id\":23,\r\n            \"rightAnswer\":\"It is the starting point of every Java programdgfsgs\"\r\n        }\r\n\r\n    ],\r\n    \"totalQuestion\":5,\r\n    \"category\":\"Java\"\r\n   \r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/user/deleteUser/152",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"user",
+										"deleteUser",
+										"152"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Session",
+					"item": [
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sessionDetails",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYXJzaC0xMjM0NTAiLCJpYXQiOjE3MTExMTExMzEsImV4cCI6MTcxMTExMjMzMX0.EGYH5qJrjw3RwWawXH8eHk60p94lEFd04NejPOjm6P0kJSEw19iFKsvrbkPW9qqb-aE7nkovCbHxgDqlFUr_-A",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://43.205.68.79:8080/session/session/752",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"session",
+										"session",
+										"752"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sessionSubmitResponse",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYXN0aGEtMTIzNDUiLCJpYXQiOjE3MTExMTEwNzAsImV4cCI6MTcxMTExMjI3MH0.ufl7DTKo6JgBF7nKLg6LshWsRzK3MRJz7JqoZ3NgpveIf5_orEdrKCX8swESADZ4-0OnwC8JJr-NE7L0CDAhmA",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"responseList\":[\r\n        {\r\n            \"id\":2,\r\n            // \"rightAnswer\":\"Perform operations on an object and return the object itself\"\r\n            \"rightOption\":3\r\n        },\r\n        {\r\n            \"id\":3,\r\n             \"rightOption\":2\r\n        },\r\n        {\r\n            \"id\":5,\r\n             \"rightOption\":3\r\n        }\r\n    ],\r\n    \"sessionId\":\"752\",\r\n    \"sessionUserId\":\"4c6ab44c-368d-4a55-a47c-9159137cbcdc\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/session/sessionResponse",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"session",
+										"sessionResponse"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createSession-1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYXJzaC0xMjM0NTAiLCJpYXQiOjE3MTExMTExMzEsImV4cCI6MTcxMTExMjMzMX0.EGYH5qJrjw3RwWawXH8eHk60p94lEFd04NejPOjm6P0kJSEw19iFKsvrbkPW9qqb-aE7nkovCbHxgDqlFUr_-A",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"delayDuration\": 5,\r\n    \"duration\": 20,\r\n   \r\n    \"sessionTitle\": \"session for abc student ... new session -testing\",\r\n    \"sessionQuestionList\": [\r\n        {\r\n            \"id\": 2\r\n        },\r\n        {\r\n            \"id\": 3\r\n        },\r\n        {\r\n            \"id\": 5\r\n        },\r\n        {\r\n            \"question\": \"made in session\",\r\n            \"options1\": \"apply\",\r\n            \"options2\": \"run\",\r\n            \"options3\": \"with\",\r\n            \"options4\": \"also\",\r\n            \"category\": \"Kotlin\",\r\n            \"rightAnswer\":\"also\",\r\n            \"topic\": \"Scope Functions\",\r\n            \"marks\": \"5\",\r\n            \"difficulty\": \"easy\"\r\n        }\r\n    ],\r\n    \"sessionUserList\": [\r\n        {\r\n            \"userId\": 802\r\n        },\r\n        {\r\n            \"userId\": 803\r\n        },\r\n        {\r\n            \"userId\": 804\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://43.205.68.79:8080/session/createSession",
+									"protocol": "http",
+									"host": [
+										"43",
+										"205",
+										"68",
+										"79"
+									],
+									"port": "8080",
+									"path": [
+										"session",
+										"createSession"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "key",
+				"value": "X-API-Key",
+				"type": "string"
+			},
+			{
+				"key": "value",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://farming-simulator.pstmn.io"
+		}
+	]
+}
