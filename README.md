@@ -25,8 +25,7 @@ QuizMate is deployed on AWS EC2 using Docker containers, leveraging the scalabil
 
 QuizApp is designed to provide the following key features:
 
-- **Question Management & Quiz Crea
-- tion**
+- **Question Management & Quiz Creaation**
   - View a list of questions.
   - Create new questions.
   - Update existing questions.
@@ -43,7 +42,6 @@ QuizApp is designed to provide the following key features:
   - Get user status & rank.
 
   -**Session Management:**
-
   - Create a session to conduct private quiz sessions.
   - Invite other users to participate in the session.
   - Each user is personally identified with a unique sessionUserId sent through email.
@@ -105,6 +103,7 @@ These features enrich the user experience on QuizMate, providing a platform for 
 - AWS for Deloyment
 - Github Actions 
 - Docker
+- Nginx
 
 Add any other technologies or libraries you've used in your project.
 
@@ -119,7 +118,7 @@ Before you begin, make sure you have the following installed:
 - Apache Maven
 - Vertex AI Configuartion
 - Cloudinary API Key and Secret (for profile image management)
-- You can also access from deployment server.http://43.205.68.79:8080/
+- You can also access from deployment server.http://43.205.68.79/
 
        
 
@@ -161,6 +160,13 @@ Before you begin, make sure you have the following installed:
 
  ## Configuration
 Configure application, including setting up the database and Cloudinary credentials & vertex Ai using Google Cloud SDK shell.  
+
+
+
+## ER diagram of Database
+
+![ER Diagram](https://github.com/Harsh-Srivastav123/quizApp_backend/blob/main/quizmate-er-diagram.png)
+
      
 ## Frontend
 The frontend for QuizMate is currently under development and is being contributed by the following developers:
@@ -186,6 +192,8 @@ Please note that the frontend is still in progress, and more details will be add
   
 - **GitHub Actions:** QuizMate uses GitHub Actions for creating a CI/CD pipeline. GitHub Actions automate the build, test, and deployment processes, ensuring rapid and reliable delivery of updates to the application.
 
+- **Nginx:** is used as a load balancer and reverse proxy, enhancing QuizMate's server availability and performance. It efficiently distributes incoming traffic and handles requests, improving the application's scalability and reliability.
+
 ## Key Points:
 1. **Custom Gateway Filter:** QuizMate uses a custom filter before the Spring Security filter to handle specific requirements or preprocessing of requests.
 
@@ -202,7 +210,7 @@ Please note that the frontend is still in progress, and more details will be add
 ### Postman Collection (Work in Progress):
 A Postman collection is being developed to document and test the APIs of QuizMate. It will include endpoints for various functionalities such as user authentication, question management, quiz creation, and blog post interactions.
 
-Please check back soon for the completed Postman collection, which will provide a comprehensive overview of QuizMate's API capabilities and allow for easy testing and integration with the application.
+A Postman collection is available in the QuizMate repository, but it is currently being updated. Please check back later for the complete version.
 
 
 
