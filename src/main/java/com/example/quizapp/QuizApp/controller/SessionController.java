@@ -3,10 +3,7 @@ package com.example.quizapp.QuizApp.controller;
 import com.example.quizapp.QuizApp.Services.SessionService;
 import com.example.quizapp.QuizApp.Services.UserService;
 import com.example.quizapp.QuizApp.entity.Session;
-import com.example.quizapp.QuizApp.model.Response;
-import com.example.quizapp.QuizApp.model.SessionDTO;
-import com.example.quizapp.QuizApp.model.SessionResponse;
-import com.example.quizapp.QuizApp.model.SessionResult;
+import com.example.quizapp.QuizApp.model.*;
 import com.example.quizapp.QuizApp.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.In;
@@ -63,6 +60,12 @@ public class SessionController {
     public ResponseEntity<String> deleteSession(@PathVariable String sessionId){
         sessionService.deleteSession(Integer.parseInt(sessionId));
         return new ResponseEntity<>("Session deleted successfully sessionId = "+sessionId,HttpStatus.OK);
+    }
+
+    @PostMapping("/verifySession")
+    public ResponseEntity<Object> getSessionVerify(@RequestBody SessionDTO sessionDTO){
+        sessionDTO.setUserId(userService.getUserByUserName(jwtAuthenticationFilter.getUserNameByToken()).getId());
+        return new ResponseEntity<>(sessionService.verifySession(sessionDTO),HttpStatus.OK);
     }
 
 }

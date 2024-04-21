@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 @Service
 public class SessionService {
 
+
     @Autowired
     SessionDAO sessionDAO;
 
@@ -49,6 +50,35 @@ public class SessionService {
 
     @Autowired
     ModelMapper modelMapper;
+
+    public Object verifySession(SessionDTO sessionDTO) {
+
+        SessionVerifyDTO sessionVerifyDTO=modelMapper.map(sessionDTO,SessionVerifyDTO.class);
+        HashMap<Integer,String> sessionUserMap=new HashMap<>();
+        List<QuestionDTO> questionList=new ArrayList<>();
+
+        for(QuestionDTO question:sessionDTO.getSessionQuestionList()){
+            if(question.getId()!=null){
+                if(!questionDAO.existsById(question.getId())){
+                    throw new BadRequest("question with questionId - "+question.getId().toString()+"  doesn't exist");
+                }
+                questionList.add(modelMapper.map(questionDAO.findById(question.getId()).get(),QuestionDTO.class));
+            }
+            else {
+                questionList.add(question);
+            }
+        }
+        sessionVerifyDTO.setSessionVerifyQuestionList(questionList);
+
+        for(SessionUser sessionUser:sessionDTO.getSessionUserList()){
+            if(!userDAO.existsById(sessionUser.getUserId())){
+                throw new BadRequest("user with userId - "+sessionUser.getUserId().toString()+"  doesn't exist");
+            }
+            sessionUserMap.put(sessionUser.getUserId(),userDAO.findById(sessionUser.getUserId()).get().getUsername());
+        }
+        sessionVerifyDTO.setUserMapList(sessionUserMap);
+        return sessionVerifyDTO;
+    }
 
     public record sessionMessage(String message, Long timeLeft){}
 
