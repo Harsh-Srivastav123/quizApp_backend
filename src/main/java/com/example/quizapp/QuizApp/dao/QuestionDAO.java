@@ -24,6 +24,8 @@ public interface QuestionDAO extends JpaRepository<Question, Integer> {
     @Query(value = "SELECT COUNT(id) FROM question WHERE difficulty= :n",nativeQuery = true)
     Integer countByDifficulty( @Param("n")  String difficulty);
 
+
+
     @Query(value = "SELECT DISTINCT(category) FROM question",nativeQuery = true)
     List<String> allCategory();
 
