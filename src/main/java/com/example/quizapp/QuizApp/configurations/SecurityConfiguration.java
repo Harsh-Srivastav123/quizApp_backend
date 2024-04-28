@@ -34,8 +34,8 @@ public class SecurityConfiguration {
     private JwtAuthenticationFilter filter;
     @Autowired
     UserDetailsService userDetailsService;
-    @Autowired
-    PasswordEncoder passwordEncoder;
+  //  @Autowired
+//    PasswordEncoder passwordEncoder;
 
 
     @Bean
@@ -97,7 +97,7 @@ public class SecurityConfiguration {
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider provider=new DaoAuthenticationProvider();
         provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder);
+        provider.setPasswordEncoder(new BCryptPasswordEncoder());
         return provider;
     }
 }
