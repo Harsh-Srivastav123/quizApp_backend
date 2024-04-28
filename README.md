@@ -1,4 +1,4 @@
-
+          
 # QuizMate - Spring Boot Project
 
 
@@ -194,6 +194,9 @@ Please note that the frontend is still in progress, and more details will be add
 
 - **Nginx:** is used as a load balancer and reverse proxy, enhancing QuizMate's server availability and performance. It efficiently distributes incoming traffic and handles requests, improving the application's scalability and reliability.
 
+
+![Deployment](https://github.com/Harsh-Srivastav123/quizApp_backend/blob/main/quizmate.drawio.png)
+
 ## Key Points:
 1. **Custom Gateway Filter:** QuizMate uses a custom filter before the Spring Security filter to handle specific requirements or preprocessing of requests.
 
@@ -208,7 +211,6 @@ Please note that the frontend is still in progress, and more details will be add
 6. **Mail Sender:** QuizMate uses a mail sender to send emails for verification and session details, enhancing the user experience and providing necessary information to users.
 
 
-[Deployment](https://github.com/Harsh-Srivastav123/quizApp_backend/blob/main/quizmate.drawio.png)
 
 ### Postman Collection (Work in Progress):
 A Postman collection is being developed to document and test the APIs of QuizMate. It will include endpoints for various functionalities such as user authentication, question management, quiz creation, and blog post interactions.
