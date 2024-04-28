@@ -105,7 +105,7 @@ These features enrich the user experience on QuizMate, providing a platform for 
 - Docker
 - Nginx
 
-Add any other technologies or libraries you've used in your project.
+
 
 ## Getting Started
 
@@ -206,6 +206,9 @@ Please note that the frontend is still in progress, and more details will be add
 5. **Cloudinary SDK:** The Cloudinary SDK is used to handle media content, such as user profile images, ensuring efficient storage and delivery of media files.
 
 6. **Mail Sender:** QuizMate uses a mail sender to send emails for verification and session details, enhancing the user experience and providing necessary information to users.
+
+
+[](https://github.com/Harsh-Srivastav123/quizApp_backend/blob/main/quizmate.drawio.png)
 
 ### Postman Collection (Work in Progress):
 A Postman collection is being developed to document and test the APIs of QuizMate. It will include endpoints for various functionalities such as user authentication, question management, quiz creation, and blog post interactions.
