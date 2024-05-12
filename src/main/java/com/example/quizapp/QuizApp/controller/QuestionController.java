@@ -76,6 +76,7 @@ public class QuestionController {
 
     @GetMapping("/showAll")
     public List<Question> getAll(){
+        log.info("all question");
         return questionServices.getAll();
     }
 
