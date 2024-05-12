@@ -113,6 +113,8 @@ public class QuestionController {
     }
     @GetMapping("/category/{category}")
     public ResponseEntity<List<CategoryData>> getCategoryData(@PathVariable("category") String category){
+
+        log.info("category info "+ category);
         List<CategoryData> categoryDataList=questionServices.getCategoryListData(category);
 
         if(categoryDataList==null){
