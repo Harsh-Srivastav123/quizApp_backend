@@ -8,6 +8,21 @@ Security is paramount in QuizApp, with robust features such as Spring Security a
 
 QuizMate is deployed on AWS EC2 using Docker containers, leveraging the scalability and reliability of AWS infrastructure. The database is hosted on AWS RDS, ensuring efficient data management and accessibility. Additionally, QuizMate employs a comprehensive CI/CD pipeline, powered by GitHub Actions, to streamline development process. This integration ensures rapid iteration and delivery of new features, maintaining QuizMate's position as the preferred platform for interactive and secure quizzing.
 
+
+Below are the important links documenting my learning on setting up CI/CD pipelines for Spring Boot and React-Vite projects, as well as configuring Nginx for various purposes:
+
+1. **Setting Up a CI/CD Pipeline for Spring Boot Project with AWS EC2, GitHub Actions, Docker:**
+   - [Medium Article](https://medium.com/@srivastavharsh68/setting-up-a-ci-cd-pipeline-for-spring-boot-project-with-aws-ec2-github-actions-docker-and-3ddaf332673b)
+
+2. **Continuous Integration and Continuous Deployment (CI/CD) for React App:**
+   - [Medium Article](https://medium.com/@srivastavharsh68/continuous-integration-and-continuous-deployment-ci-cd-for-react-app-18d59b34fd9b)
+
+3. **Nginx Setup for Load Balancer, API Gateway, Reverse Proxy:**
+   - [LinkedIn Post](https://www.linkedin.com/posts/harsh-srivastav123_nginx-horizontalscaling-ci-activity-7195545854932361216-6Z-_?utm_source=share&utm_medium=member_desktop)
+
+Feel free to explore these resources for comprehensive guides on setting up CI/CD pipelines and Nginx configurations for your projects.
+
+
 ## Table of Contents
 
 - [Project Overview](#project-overview)
@@ -222,7 +237,7 @@ A Postman collection is available in the QuizMate repository, but it is currentl
 ### Swagger API Documentation
 QuizApp provides Swagger for easy API documentation and testing. You can access the Swagger UI to interact with the APIs as follows:
 
-http://43.205.68.79:8080/swagger-ui/index.html
+http://43.205.68.79/swagger-ui/index.html
 
  ```shell
    http://localhost:8080/swagger-ui.html
