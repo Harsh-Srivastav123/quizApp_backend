@@ -7,7 +7,7 @@ jobs:
 
   build:
 
-    runs-on: ['self-hosted', 'Linux', 'X64', 'aws' ]
+    runs-on: ['self-hosted', 'Linux', 'X64']
 
     steps:
     - uses: actions/checkout@v2
