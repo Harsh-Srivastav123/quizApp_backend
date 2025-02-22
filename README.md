@@ -1,5 +1,6 @@
           
-# QuizMate - Spring Boot Project
+# QuizMate - Spring Boot Project .
+
 
 
 QuizMate, powered by Spring Boot, redefines the quiz experience with its dynamic and user-centric design. Offering seamless CRUD operations on questions and easy topic filtering, users can effortlessly navigate and create quizzes tailored to their interests. Personalized profiles, enhanced with Cloudinary-managed images, further elevate user engagement, creating a vibrant and interactive platform.
